@@ -6,8 +6,8 @@ date_default_timezone_set('Asia/Kolkata');
 setlocale(LC_MONETARY, 'en_IN');
 
 $databaseHost = 'localhost';
-$databaseName = 'u493086877_shop';
-$databaseUsername = 'u493086877_user';
+$databaseName = 'u704461052_shop';
+$databaseUsername = 'u704461052_user';
 $databasePassword = 'mko0<LP_';
 
 $mysqli =  mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);
