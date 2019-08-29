@@ -3,4 +3,4 @@ Smart Retail POS
 
 Web url: smartretailpos.pe.hu/retail
 
-DB url: db.wbweb.co.in
+DB url: https://auth-db204.hostinger.com/
