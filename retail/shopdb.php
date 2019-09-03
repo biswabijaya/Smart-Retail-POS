@@ -5,7 +5,6 @@ if(!isset($_SESSION)) { session_start(); }
 date_default_timezone_set('Asia/Kolkata');
 setlocale(LC_MONETARY, 'en_IN');
 
-
 $databaseHost = 'localhost';
 $databaseName = 'u704461052_shop';
 $databaseUsername = 'u704461052_user';
