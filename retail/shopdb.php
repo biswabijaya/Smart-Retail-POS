@@ -12,6 +12,6 @@ $databasePassword = 'mko0<LP_';
 
 $mysqli =  mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);
 
-$_SESSION['DIR']="www.shantifresh.com";
+$_SESSION['DIR']="";
 $active=" ";
 ?>
