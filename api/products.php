@@ -13,6 +13,7 @@ function getProduct($sku=0){
   if($result = mysqli_query(getMysqli(), "SELECT * From products where sku='$sku'"))
     while($res = mysqli_fetch_array($result))
       $json[]=$res;
+  echo json_encode($json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 }
 
 function getProducts(){
