@@ -1,5 +1,5 @@
 <?php
-include '../retail/shopdb.php';
+include 'db.php';
 
 if (((isset($_GET['sku']) and isset($_GET['action'])) and $_GET['action']=="fetchproduct" )) {
    echo getProduct($_GET['sku']);
