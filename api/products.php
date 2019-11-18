@@ -15,12 +15,12 @@ function getProduct($sku=0){
       json_encode($row);
     }
   }
-
+}
 function getProducts(){
   if($query = mysqli_query($mysqli,"SELECT * FROM products order by category asc, subcategory asc, name asc ")){
     if ($row = mysqli_fetch_array($query)) {
       json_encode($row);
     }
   }
-
+}
 ?>
