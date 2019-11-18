@@ -11,7 +11,7 @@ if ((isset($_GET['action'])) and $_GET['action']=="fetchproducts" ) {
 
 function getProduct($sku=0){
   if($result = mysqli_query(getMysqli(), "SELECT * From products where sku='$sku'"))
-    while($res = mysqli_fetch_array($result))
+    while($res = mysqli_fetch_assoc($result))
       $json[]=$res;
   echo json_encode($json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 }
@@ -19,7 +19,7 @@ function getProduct($sku=0){
 function getProducts(){
   $json = array();
   if($result = mysqli_query(getMysqli(), "SELECT * From products order by category ASC, subcategory, name ASC"))
-    while($res = mysqli_fetch_array($result))
+    while($res = mysqli_fetch_assoc($result))
       $json[]=$res;
 
   echo json_encode($json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
