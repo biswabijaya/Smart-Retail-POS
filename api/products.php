@@ -2,7 +2,7 @@
 include '../retail/shopdb.php';
 
 if (((isset($_GET['sku']) and isset($_GET['action'])) and $_GET['action']=="fetchproduct" )) {
-   echo getProduct$_GET['sku']);
+   echo getProduct($_GET['sku']);
 }
 
 if ((isset($_GET['action'])) and $_GET['action']=="fetchproducts" ) {
