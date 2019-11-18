@@ -12,6 +12,11 @@ $databasePassword = 'mko0<LP_';
 
 $mysqli =  mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);
 
+function getMysqli()
+{
+  return mysqli_connect('localhost', 'u704461052_user', 'mko0<LP_', 'u704461052_shop');
+}
+
 $_SESSION['DIR']="";
 $active=" ";
 ?>

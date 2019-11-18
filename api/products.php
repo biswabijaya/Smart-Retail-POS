@@ -10,7 +10,7 @@ if ((isset($_GET['action'])) and $_GET['action']=="fetchproducts" ) {
 }
 
 function getProduct($sku=0){
-  if($query = mysqli_query($mysqli,"SELECT * FROM products WHERE sku = '$sku' ")){
+  if($query = mysqli_query(getMysqli(),"SELECT * FROM products WHERE sku = '$sku' ")){
     while ($row = mysqli_fetch_array($query,MYSQL_ASSOC)) {
         echo json_encode($row, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
     }
@@ -19,7 +19,7 @@ function getProduct($sku=0){
 
 function getProducts(){
   $json = array();
-  if($query = mysqli_query($mysqli,"SELECT * FROM products order by category asc, subcategory asc, name asc ")){
+  if($query = mysqli_query(getMysqli(),"SELECT * FROM products order by category asc, subcategory asc, name asc ")){
     while ($row = mysqli_fetch_array($query,MYSQL_ASSOC)) {
       $json[]=$row;
     }
