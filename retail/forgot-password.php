@@ -67,7 +67,7 @@ if (isset($_POST['submit']) and $_POST['submit']=='step1') {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Shanti Fresh | Password Reset</title>
+  <title>Smart Retail POS | Password Reset</title>
   <!-- Bootstrap core CSS-->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->

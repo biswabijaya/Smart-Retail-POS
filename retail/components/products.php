@@ -1,6 +1,6 @@
 <?php
 $productsfilter=" id>0 ";
-
+//selling non selling filter
 if (!isset($_GET['notselling'])) {
   $print_notselling="hide";
 } else {
@@ -20,7 +20,7 @@ if (!isset($_GET['selling'])) {
 <!-- Breadcrumbs-->
 <ol class="breadcrumb">
   <li class="breadcrumb-item">
-    <a href="dashboard.php">Shanti Fresh</a>
+    <a href="dashboard.php">Smart Retail POS</a>
   </li>
   <li class="breadcrumb-item active">Stock</li>
   <li class="breadcrumb-item">
@@ -86,8 +86,6 @@ if (!isset($_GET['selling'])) {
           <?php
           if($result = mysqli_query($mysqli, "SELECT * From products where $productsfilter order by name ASC"))
         	while($res = mysqli_fetch_array($result)){
-
-
 
             //initialisation
             $productid=$res['id'];

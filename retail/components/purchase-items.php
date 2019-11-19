@@ -1,7 +1,7 @@
 <!-- Breadcrumbs-->
 <ol class="breadcrumb">
   <li class="breadcrumb-item">
-    <a href="dashboard.php">Shanti Fresh</a>
+    <a href="dashboard.php">Smart Retail POS</a>
   </li>
   <li class="breadcrumb-item">
     <a href="purchases.php">All Purchases</a>

@@ -17,7 +17,7 @@ if (((isset($_GET['id']) and isset($_GET['action'])) and $_GET['action']=="getda
 
 function getUserDataJson($id=0){
   if($query = mysqli_query($mysqli,"SELECT * FROM staffs WHERE id = $id")){
-    if ($row = mysqli_fetch_array($query)) {
+    while ($row = mysqli_fetch_array($query)) {
       json_encode($row);
     }
   }

@@ -10,6 +10,7 @@ if ((isset($_GET['action'])) and $_GET['action']=="fetchproducts" ) {
 }
 
 function getProduct($sku=0){
+  $json = array(); // declre array
   if($result = mysqli_query(getMysqli(), "SELECT * From products where sku='$sku'"))
     while($res = mysqli_fetch_assoc($result))
       $json[]=$res;
