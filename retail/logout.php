@@ -2,6 +2,6 @@
 session_start();
 session_unset();
 session_destroy();
-header('Location: https://shantifresh.com/shop/');
+header('Location: http://smartretailpos.pe.hu/retail/');
 exit();
 ?>
