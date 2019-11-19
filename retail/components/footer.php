@@ -2,7 +2,7 @@
 <footer class="sticky-footer">
   <div class="container">
     <div class="text-center">
-      <small> © 2018 Smart Retail POS | Made With <i class="fa fa-fw fa-heart" style="color:red;"></i> By <a href="https://biswabijaya.com">Biswabijaya</a> </small>
+      <small> © 2019 Smart Retail POS | Made For <i class="fa fa-fw fa-heart" style="color:red;"></i> <a href="">Minor Project SRM University</a> By Aditya, Biswa, Arunima & Ishmin</small>
     </div>
   </div>
 </footer>
