@@ -8,11 +8,12 @@ if(!isset($_GET['date'])){
   </form>';
 } else {
 echo "<pre>";
-printTableData($_GET['table']);
+printTableData($_GET['date']);
 echo "</pre>";
 }
 
-function printTableData($date=date('Y-m-d')){
+
+function printTableData($date){
   $json = array(); // declre array
   if($result = mysqli_query(getMysqli(), "SELECT * From sales where date = '$date'"))
     while($res = mysqli_fetch_assoc($result))
