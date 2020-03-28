@@ -11,9 +11,9 @@ if (!isset($_GET['sku'])) {
   </form>';
 } else {
   if ($_GET['sku']=='all') {
-    echo getProducts();
+    echo '<pre>'.getProducts().'</pre>';
   } else {
-    echo getProduct($_GET['sku']);
+    echo '<pre>'.getProduct($_GET['sku']).'</pre>';
   }
 }
 
@@ -30,7 +30,6 @@ function getProducts(){
   if($result = mysqli_query(getMysqli(), "SELECT * From products order by category ASC, subcategory, name ASC"))
     while($res = mysqli_fetch_assoc($result))
       $json[]=$res;
-
   echo json_encode($json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 }
 
