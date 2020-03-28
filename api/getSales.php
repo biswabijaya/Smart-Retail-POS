@@ -7,9 +7,7 @@ if(!isset($_GET['date'])){
     <input type="submit" value="submit">
   </form>';
 } else {
-echo "<pre>";
 printTableData($_GET['date']);
-echo "</pre>";
 }
 
 

@@ -10,9 +10,7 @@ if (!isset($_GET['salesid'])) {
   echo'</select>    <input type="submit" value="submit">
   </form>';
 } else {
-  echo "<pre>";
   printTableData($_GET['salesid']);
-  echo "</pre>";
 }
 
 function printTableData($saleid){

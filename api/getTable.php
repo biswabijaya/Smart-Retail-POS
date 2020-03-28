@@ -28,9 +28,7 @@ if(!isset($_GET['table'])){
 <br><a href="getTable.php?table=pvariants" >pvariants</a>
 <br><a href="getTable.php?table=salepayments" >salepayments</a>';
 } else {
-echo "<pre>";
 printTableData($_GET['table']);
-echo "</pre>";
 }
 
 function printTableData($table='products'){
