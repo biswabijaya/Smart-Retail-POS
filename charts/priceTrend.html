@@ -13,7 +13,8 @@
 </html>
 
 <script>
-    $(document).ready(function(){
+    function getData() {
+      console.log('success1');
       $.ajax({
         url:'http://smartretailpos.pe.hu/api/productsPriceTrend.php',
         type:'get',
@@ -22,11 +23,18 @@
         },
         dataType:'html',
         success: function(response){
-          alert('success');
+          console.log('success2');
           console.log(response);
-        }
+        },
+        error:function (xhr, ajaxOptions, thrownError) {
+         alert(xhr.status);
+         alert(thrownError);
+       }
+
       });
-    });
+    }
+
+    getData();
 
     var ctx = document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {
