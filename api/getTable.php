@@ -1,7 +1,7 @@
 <?php
 include 'db.php';
 
-echo "<br><a href="getTable.php?table=actionrecords" >actionrecords </a>
+echo '<br><a href="getTable.php?table=actionrecords" >actionrecords </a>
 <br><a href="getTable.php?table=adminntf" >adminntf</a>
 <br><a href="getTable.php?table=counter" >counter</a>
 <br><a href="getTable.php?table=expense" >expense</a>
