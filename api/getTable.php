@@ -3,7 +3,7 @@ include 'db.php';
 
 function printTableSchema(){
   $json = array(); // declre array
-  if($result = mysqli_query(getMysqli(), "SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'u493086877_shop'"))
+  if($result = mysqli_query(getMysqli(), "SELECT @a:=@a+1 sr, ORDINAL_POSITION as tid , TABLE_NAME as tablename, COLUMN_NAME as columnname FROM INFORMATION_SCHEMA.COLUMNS,(SELECT @a:= 0) AS a WHERE TABLE_SCHEMA = 'u493086877_shop'"))
     while($res = mysqli_fetch_assoc($result))
       $json[]=$res;
   echo json_encode($json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
