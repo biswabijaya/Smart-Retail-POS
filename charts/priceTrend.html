@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <div class="container" style="width: 600px; height: 400px;">
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    </body>
+</html>
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['1', '2','3', '4', '5', '6', '7' ] ,
+        datasets: [{
+            label: 'Total number of cases',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: ['1', '2','3', '4', '5', '10', '20']
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+    $(document).ready(function(){
+        $.ajax({
+            url: "http://smartretailpos.pe.hu/api/productsPriceTrend.php?sku=10035",
+            type: "GET",
+            dataType: "JSON"
+        })
+        .done(function(data){
+            console.log(data);
+        })
+        
+    });
+</script>
