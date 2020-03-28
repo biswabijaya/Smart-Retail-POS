@@ -1,14 +1,31 @@
 <?php
 include 'db.php';
 
-function printTableSchema(){
-  $js = array(); // declre array
-  if($result = mysqli_query(getMysqli(), "SELECT @a:=@a+1 sr, ORDINAL_POSITION as tid , TABLE_NAME as tablename, COLUMN_NAME as columnname FROM INFORMATION_SCHEMA.COLUMNS,(SELECT @a:= 0) AS a WHERE TABLE_SCHEMA = 'u493086877_shop'"))
-    while($res = mysqli_fetch_array($result))
-      echo $res['tablename'].'---';
-      //$js[]=$res;
-  //echo json_encode($js, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
-}
+echo "<br><a href="getTable.php?table=actionrecords" >actionrecords </a>
+<br><a href="getTable.php?table=adminntf" >adminntf</a>
+<br><a href="getTable.php?table=counter" >counter</a>
+<br><a href="getTable.php?table=expense" >expense</a>
+<br><a href="getTable.php?table=fluctuationreport" >fluctuationreport</a>
+<br><a href="getTable.php?table=gsthsn" >gsthsn</a>
+<br><a href="getTable.php?table=highvaluereport" >highvaluereport</a>
+<br><a href="getTable.php?table=hsn" >hsn</a>
+<br><a href="getTable.php?table=locations" >locations</a>
+<br><a href="getTable.php?table=mostsoldreport" >mostsoldreport</a>
+<br><a href="getTable.php?table=ordertracking" >ordertracking</a>
+<br><a href="getTable.php?table=pages" >pages</a>
+<br><a href="getTable.php?table=pictures" >pictures</a>
+<br><a href="getTable.php?table=pimages" >pimages</a>
+<br><a href="getTable.php?table=pinfs" >pinfs</a>
+<br><a href="getTable.php?table=previews" >previews</a>
+<br><a href="getTable.php?table=prodiscounts" >prodiscounts</a>
+<br><a href="getTable.php?table=products" >products</a>
+<br><a href="getTable.php?table=profitrankreport" >profitrankreport</a>
+<br><a href="getTable.php?table=ptags" >ptags</a>
+<br><a href="getTable.php?table=purchaseditems" >purchaseditems</a>
+<br><a href="getTable.php?table=purchasepayments" >purchasepayments</a>
+<br><a href="getTable.php?table=purchases" >purchases</a>
+<br><a href="getTable.php?table=pvariants" >pvariants</a>
+<br><a href="getTable.php?table=salepayments" >salepayments</a>'.'<hr>';
 
 function printTableData($table='products'){
   $json = array(); // declre array
