@@ -1,15 +1,18 @@
 <?php
 include 'db.php';
 
-if(!isset($_GET['saleid'])){
+if (!isset($_GET['salesid'])) {
   echo '<form method="get">
-    <input type="date" name="date" value="">
-    <input type="submit" name="submit" value="submit">
+  <select name="salesid"><option>all</option>';
+  if($result = mysqli_query(getMysqli(), "SELECT * From sales order by id desc"))
+    while($res = mysqli_fetch_array($result))
+        echo'<option value="'.$res['id'].'"> '.$res['id'].' - '.$res['cno'].' - '.$res['date'].'</option>';
+  echo'</select>    <input type="submit" name="submit" value="submit">
   </form>';
 } else {
-echo "<pre>";
-printTableData($_GET['saleid']);
-echo "</pre>";
+  echo "<pre>";
+  printTableData($_GET['saleid']);
+  echo "</pre>";
 }
 
 function printTableData($saleid=1){
