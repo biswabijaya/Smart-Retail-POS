@@ -15,7 +15,7 @@ if (!isset($_GET['salesid'])) {
   echo "</pre>";
 }
 
-function printTableData($saleid=1){
+function printTableData($saleid){
   $json = array(); // declre array
   if($result = mysqli_query(getMysqli(), "SELECT * From solditems where salesid=$saleid"))
     while($res = mysqli_fetch_assoc($result))

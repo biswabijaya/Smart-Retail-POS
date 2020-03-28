@@ -15,7 +15,7 @@ if (!isset($_GET['purchaseid'])) {
   echo "</pre>";
 }
 
-function printTableData($purchaseid=1){
+function printTableData($purchaseid){
   $json = array(); // declre array
   if($result = mysqli_query(getMysqli(), "SELECT * From purchaseditems where purchaseid=$purchaseid"))
     while($res = mysqli_fetch_assoc($result))
