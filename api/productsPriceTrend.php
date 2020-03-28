@@ -23,7 +23,7 @@ if (!isset($_GET['sku'])) {
 
 function getProduct($sku=0){
   $json = array(); // declre array
-  if($result = mysqli_query(getMysqli(), "SELECT * From products where sku='$sku'"))
+  if($result = mysqli_query(getMysqli(), "SELECT id,sku,category,subcategory,name From products where sku='$sku'"))
     while($res = mysqli_fetch_assoc($result)){
       $id=$res['id'];
       $purchases = array();
