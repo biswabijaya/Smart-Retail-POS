@@ -1,7 +1,8 @@
 <?php
 include 'db.php';
 
-echo '<br><a href="getTable.php?table=actionrecords" >actionrecords </a>
+if(!isset($_GET['table'])){
+  echo '<br><a href="getTable.php?table=actionrecords" >actionrecords </a>
 <br><a href="getTable.php?table=adminntf" >adminntf</a>
 <br><a href="getTable.php?table=counter" >counter</a>
 <br><a href="getTable.php?table=expense" >expense</a>
@@ -26,6 +27,11 @@ echo '<br><a href="getTable.php?table=actionrecords" >actionrecords </a>
 <br><a href="getTable.php?table=purchases" >purchases</a>
 <br><a href="getTable.php?table=pvariants" >pvariants</a>
 <br><a href="getTable.php?table=salepayments" >salepayments</a>';
+} else {
+echo "<pre>";
+printTableData($_GET['table']);
+echo "</pre>";
+}
 
 function printTableData($table='products'){
   $json = array(); // declre array
@@ -34,8 +40,4 @@ function printTableData($table='products'){
       $json[]=$res;
   echo json_encode($json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 }
-
-echo "<hr><pre>";
-printTableData();
-echo "</pre>";
 ?>
