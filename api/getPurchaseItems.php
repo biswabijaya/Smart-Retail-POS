@@ -4,7 +4,7 @@ include 'db.php';
 if (!isset($_GET['purchaseid'])) {
   echo '<form method="get">
   <select name="salesid"><option>all</option>';
-  if($result = mysqli_query(getMysqli(), "SELECT * From sales order by id desc"))
+  if($result = mysqli_query(getMysqli(), "SELECT * From purchases order by id desc"))
     while($res = mysqli_fetch_array($result))
         echo'<option value="'.$res['id'].'"> '.$res['id'].' - '.$res['cno'].' - '.$res['date'].'</option>';
   echo'</select>    <input type="submit" value="submit">
