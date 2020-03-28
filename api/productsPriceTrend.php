@@ -29,13 +29,13 @@ function getProduct($sku=0){
       $purchases = array();
       if($result1 = mysqli_query(getMysqli(), "SELECT purchaseid,staffid,supplierid,type,date,mrp,quantity,buyprice,sellprice,status From purchases t1, purchaseditems t2 where t1.id=t2.purchaseid and t2.productid=$id order by t2.purchaseid desc"))
         while($res1 = mysqli_fetch_assoc($result1)){
-            $purchases[]=$res;
+            $purchases[]=$res1;
         }
 
       $sales = array();
       if($result1 = mysqli_query(getMysqli(), "SELECT salesid,staffid,storecode,cno,date,quantity,mrp,sellprice,status From sales t1, solditems t2 where t1.id=t2.salesid and t2.productid=$id order by t2.salesid desc"))
         while($res1 = mysqli_fetch_assoc($result1)){
-            $sales[]=$res;
+            $sales[]=$res1;
         }
 
       $data = array (
@@ -65,13 +65,13 @@ function getProducts(){
       $purchases = array();
       if($result1 = mysqli_query(getMysqli(), "SELECT purchaseid,staffid,supplierid,type,date,mrp,quantity,buyprice,sellprice,status From purchases t1, purchaseditems t2 where t1.id=t2.purchaseid and t2.productid=$id order by t2.purchaseid desc"))
         while($res1 = mysqli_fetch_assoc($result1)){
-            $purchases[]=$res;
+            $purchases[]=$res1;
         }
 
       $sales = array();
       if($result1 = mysqli_query(getMysqli(), "SELECT salesid,staffid,storecode,cno,date,quantity,mrp,sellprice,status From sales t1, solditems t2 where t1.id=t2.salesid and t2.productid=$id order by t2.salesid desc"))
         while($res1 = mysqli_fetch_assoc($result1)){
-            $sales[]=$res;
+            $sales[]=$res1;
         }
 
       $data = array (
