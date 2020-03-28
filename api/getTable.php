@@ -19,6 +19,7 @@ function printTableData($table='products'){
   echo json_encode($json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 }
 printTableSchema();
-echo "<hr>";
+echo "<hr><pre>";
 printTableData();
+echo "</pre>";
 ?>
