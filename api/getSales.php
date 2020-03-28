@@ -4,7 +4,7 @@ include 'db.php';
 if(!isset($_GET['date'])){
   echo '<form method="get">
     <input type="date" name="date" value="">
-    <input type="submit" name="submit" value="submit">
+    <input type="submit" value="submit">
   </form>';
 } else {
 echo "<pre>";

@@ -7,7 +7,7 @@ if (!isset($_GET['sku'])) {
   if($result = mysqli_query(getMysqli(), "SELECT * From products order by category ASC, subcategory, name ASC"))
     while($res = mysqli_fetch_array($result))
         echo'<option value="'.$res['sku'].'"> '.$res['category'].' - '.$res['subcategory'].' - '.$res['name'].'</option>';
-  echo'</select>    <input type="submit" name="submit" value="submit">
+  echo'</select>    <input type="submit" value="submit">
   </form>';
 } else {
   if ($_GET['sku']=='all') {
