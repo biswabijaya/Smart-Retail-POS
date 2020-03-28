@@ -23,7 +23,7 @@ if (!isset($_GET['sku'])) {
 
 function getProduct($sku=0){
   $json = array(); // declre array
-  if($result = mysqli_query(getMysqli(), "SELECT id,sku,category,subcategory,name From products where sku='$sku'"))
+  if($result = mysqli_query(getMysqli(), "SELECT id,sku,category,subcategory,name,icon,brand,unit,status,type From products where sku='$sku'"))
     while($res = mysqli_fetch_assoc($result)){
       $id=$res['id'];
       $purchases = array();
@@ -59,7 +59,7 @@ function getProduct($sku=0){
 
 function getProducts(){
   $json = array(); // declre array
-  if($result = mysqli_query(getMysqli(), "SELECT id,sku,category,subcategory,name From products order by category ASC, subcategory, name ASC"))
+  if($result = mysqli_query(getMysqli(), "SELECT id,sku,category,subcategory,name,icon,brand,unit,status,type From products order by category ASC, subcategory, name ASC"))
     while($res = mysqli_fetch_assoc($result)){
       $id=$res['id'];
       $purchases = array();
