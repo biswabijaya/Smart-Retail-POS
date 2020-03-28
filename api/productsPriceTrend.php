@@ -93,5 +93,4 @@ function getProducts(){
   echo json_encode($json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 }
 
-
 ?>
