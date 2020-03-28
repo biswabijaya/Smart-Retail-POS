@@ -11,9 +11,13 @@ if (!isset($_GET['sku'])) {
   </form>';
 } else {
   if ($_GET['sku']=='all') {
-    echo '<pre>'.getProducts().'</pre>';
+    echo "<pre>";
+    getProducts();
+    echo "</pre>";
   } else {
-    echo '<pre>'.getProduct($_GET['sku']).'</pre>';
+    echo "<pre>";
+    getProduct($_GET['sku']);
+    echo "</pre>";
   }
 }
 
