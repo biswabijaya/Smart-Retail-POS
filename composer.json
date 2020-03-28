@@ -1,0 +1,15 @@
+{
+  "name": "biswabijaya/Smart-Retail-POS",
+  "homepage": "https://smartretailpos.pe.hu",
+  "description": "Smart Retail POS",
+  "keywords": ["smart retil pos", "wbweb", "biswabijaya"],
+  "authors": [
+      {
+          "name": "smartretailpos.pe.hu.io",
+          "email": "me@biswabijaya.com"
+      }
+  ],
+  "require": {
+      "php": ">=5.0.0"
+  }
+}
