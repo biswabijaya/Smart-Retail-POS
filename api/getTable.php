@@ -13,7 +13,7 @@ function printTableSchema($table='products'){
 
 function printTableData($table='products'){
   $json = array(); // declre array
-  if($result = mysqli_query(getMysqli(), "SELECT * '$table'"))
+  if($result = mysqli_query(getMysqli(), "SELECT * From '$table'"))
     while($res = mysqli_fetch_assoc($result))
       $json[]=$res;
   echo json_encode($json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
