@@ -25,7 +25,7 @@ echo '<br><a href="getTable.php?table=actionrecords" >actionrecords </a>
 <br><a href="getTable.php?table=purchasepayments" >purchasepayments</a>
 <br><a href="getTable.php?table=purchases" >purchases</a>
 <br><a href="getTable.php?table=pvariants" >pvariants</a>
-<br><a href="getTable.php?table=salepayments" >salepayments</a>'.'<hr>';
+<br><a href="getTable.php?table=salepayments" >salepayments</a>';
 
 function printTableData($table='products'){
   $json = array(); // declre array
@@ -34,9 +34,8 @@ function printTableData($table='products'){
       $json[]=$res;
   echo json_encode($json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 }
-echo "<pre>";
-printTableSchema();
-echo "</pre><hr><pre>";
+
+echo "<hr><pre>";
 printTableData();
 echo "</pre>";
 ?>
