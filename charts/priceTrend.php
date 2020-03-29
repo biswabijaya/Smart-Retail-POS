@@ -13,8 +13,16 @@
 </html>
 
 <script>
-  var sku=8908002036015;
-  
+<?php
+if (isset($_GET['sku'])) {
+  echo 'sku='.$_GET['sku'].';';
+} else {
+  echo 'sku=1;';
+}
+
+?>
+
+
       $.ajax({
         url:'http://smartretailpos.pe.hu/api/productsPriceTrend.php',
         type:'get',
@@ -55,7 +63,7 @@
           	grey: 'rgb(201, 203, 207)'
           };
 
-          var ctx = document.getElementById('myChart');
+
           var chart = new Chart(ctx, {
           // The type of chart we want to create
           type: 'line',
@@ -131,5 +139,7 @@
           });
         }
       });
+
+
 
 </script>
