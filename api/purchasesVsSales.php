@@ -18,7 +18,7 @@ function printTableData($fromdate,$todate){
 
     do{
       $purchases = $sales = array();
-      if($result1 = mysqli_query(getMysqli(), "SELECT id,date,status From purchases date='$date' order by id asc"))
+      if($result1 = mysqli_query(getMysqli(), "SELECT id,date,status From purchases where date='$date' order by id asc"))
         while($res1 = mysqli_fetch_assoc($result1)){
           $purchaseid=$res1['id'];
           $purchaseditems= array();
@@ -33,7 +33,7 @@ function printTableData($fromdate,$todate){
             );
             $purchases[]=$purchasesdata;
         }
-        if($result1 = mysqli_query(getMysqli(), "SELECT id,date,status From sales date='$date' order by id asc"))
+        if($result1 = mysqli_query(getMysqli(), "SELECT id,date,status From sales where date='$date' order by id asc"))
           while($res1 = mysqli_fetch_assoc($result1)){
             $salesid=$res1['id'];
             $solditems= array();
