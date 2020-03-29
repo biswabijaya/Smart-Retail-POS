@@ -8,13 +8,13 @@
       <div class="container">
         <br><br>
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-4">
             <br><br><br><br>
             <div id="selectdata">
 
             </div>
           </div>
-          <div class="col-md-7">
+          <div class="col-md-8">
             <canvas id="myChart" height="200"></canvas>
           </div>
         </div>
@@ -149,6 +149,9 @@ $.ajax({
           title: {
             display: true,
             text: psku+' - '+pname+' Price Trend'
+          },
+          legend:{
+            position: 'left'
           },
           tooltips: {
             mode: 'index',
