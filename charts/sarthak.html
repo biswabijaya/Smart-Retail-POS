@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <div class="container" style="width: 600px; height: 400px;">
+            <canvas id="myChart" width="800" height="500"></canvas>
+        </div>
+        <script src="http://smartretailpos.pe.hu/retail/assets/vendor/jquery/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    </body>
+</html>
+
+<script>
+    var bprice = [];
+    var sprice = [];
+    var date = [];
+    function getData() {
+      $.ajax({
+        url:'http://smartretailpos.pe.hu/api/productsPriceTrend.php',
+        type:'get',
+        data:{
+          sku:'10034',
+        },
+        dataType:'json',
+        success: function(response){
+          console.log(response)
+          for (var i = 0; i < response[0].purchases.length; i++) {
+
+            bprice.push(response[0].purchases[i].buyprice);
+            sprice.push(response[0].purchases[i].sellprice);
+
+            date.push(response[0].purchases[i].date);
+
+          }
+          console.log(bprice);
+          console.log(sprice);
+          console.log(date);
+
+        },
+        error:function (xhr, ajaxOptions, thrownError) {
+         console.error(thrownError);
+       }
+      });
+    }
+
+    getData();
+
+
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: date ,
+        datasets: [{
+            label: 'Buy Price',
+            borderColor: 'rgb(255, 99, 132)',
+            data: bprice
+        },
+        {
+            label: 'Sell Price',
+            borderColor: 'rgb(0, 99, 132)',
+            data: sprice
+        }
+
+
+      ]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
+</script>
