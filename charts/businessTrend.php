@@ -74,6 +74,10 @@ if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
         soldamount.push(item.soldamount);
       });
 
+      console.log(data);
+
+      console.log(date);
+
       chartColors = {
       	red: 'rgb(255, 99, 132)',
       	orange: 'rgb(255, 159, 64)',
@@ -143,7 +147,7 @@ if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
             responsive: true,
             title: {
               display: true,
-              text: <?php echo $_GET['fromdate']; ?>+' - '+<?php echo $_GET['todate']; ?>+' Business Trend'
+              text: '<?php echo $_GET['fromdate']; ?><?php echo $_GET['todate']; ?> Business Trend'
             },
             legend:{
               position: 'left'
