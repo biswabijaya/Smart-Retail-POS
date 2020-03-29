@@ -13,7 +13,6 @@
 </html>
 
 <script>
-    function getData() {
       $.ajax({
         url:'http://smartretailpos.pe.hu/api/productsPriceTrend.php',
         type:'get',
@@ -22,33 +21,62 @@
         },
         dataType:'json',
         success: function(response){
-          console.log(response);
-        },
-        error:function (xhr, ajaxOptions, thrownError) {
-         alert(xhr.status);
-         alert(thrownError);
-       }
+          var data = [];
+          var saleprice = [];
+          var mrp = [];
+          var date = [];
+          var quantity = [];
+          var buyprice = [];
+          var data = [];
+
+          data=response;
+          console.log(data);
+
+          data.forEach(function (item){
+            item.purchases.forEach(function(purchase){
+              buyprice.push(purchase.buyprice);
+              saleprice.push(purchase.saleprice);
+              mrp.push(purchase.mrp);
+              date.push(purchase.date);
+              quantity.push(purchase.quantity);
+            });
+          });
+
+          console.log(data);
+          console.log(buyprice);
+          console.log(saleprice);
+          console.log(mrp);
+          console.log(date);
+          console.log(quantity);
+
+          var ctx = document.getElementById('myChart').getContext('2d');
+          var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: 'line',
+
+
+
+          // The data for our dataset
+              data: {
+                  labels: date ,
+                  datasets: [
+                              {
+                                label: 'Purchase Price',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: buyprice
+                              },
+                              {
+                                label: 'Sale Price',
+                                borderColor: 'rgb(23, 99, 132)',
+                                data: saleprice
+                              }
+                            ]
+              },
+
+              // Configuration options go here
+              options: {}
+          });
+        }
       });
-    }
 
-    getData();
-
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
-
-    // The data for our dataset
-    data: {
-        labels: ['1', '2','3', '4', '5', '6', '7' ] ,
-        datasets: [{
-            label: 'Total number of cases',
-            borderColor: 'rgb(255, 99, 132)',
-            data: ['1', '2','3', '4', '5', '10', '20']
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
 </script>
