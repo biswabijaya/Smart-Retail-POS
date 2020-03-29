@@ -29,25 +29,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 <script>
-
+var psku = pname = '';
+$.ajax({
+  url:'http://smartretailpos.pe.hu/api/purchasesVsSales.php',
+  type:'get',
+  data:{
+    empty:' ',
+  },
+  datatype: 'html',
+  success: function(response){
+    $('#selectdata').html(response);
+  }
+});
 <?php
 if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
   ?>
-  var psku = pname = '';
-  $.ajax({
-    url:'http://smartretailpos.pe.hu/api/purchasesVsSales.php',
-    type:'get',
-    data:{
-      empty:' ',
-    },
-    datatype: 'html',
-    success: function(response){
-      $('#selectdata').html(response);
-      <?php echo ' $("#todate").val('.$_GET['todate'].'); $("#fromdate").val('.$_GET['fromdate'].');'; ?>
-    }
-  });
-
-
   $.ajax({
     url:'http://smartretailpos.pe.hu/api/purchasesVsSales.php',
     type:'get',
