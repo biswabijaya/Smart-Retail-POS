@@ -73,28 +73,24 @@ if (isset($_GET['sku'])) {
                   datasets: [
                               {
                                 label: 'Purchase Price',
-                                fill: 'false',
                                 borderColor: chartColors.green,
                                 backgroundColor: chartColors.green,
                                 data: buyprice
                               },
                               {
                                 label: 'Sale Price',
-                                fill: 'false',
                                 borderColor: chartColors.red,
                                 backgroundColor: chartColors.red,
                                 data: sellprice
                               },
                               {
                                 label: 'MRP',
-                                fill: 'false',
                                 borderColor: chartColors.blue,
                                 backgroundColor: chartColors.blue,
                                 data: mrp
                               },
                               {
                                 label: 'Purchase Quantity',
-                                fill: 'false',
                                 borderDash: [5, 5],
                                 borderColor: chartColors.grey,
                                 backgroundColor: chartColors.grey,
@@ -118,6 +114,11 @@ if (isset($_GET['sku'])) {
                   mode: 'nearest',
                   intersect: true
                 },
+                elements: {
+          				line: {
+          					fill: false
+          				}
+                },
                 scales: {
                   xAxes: [{
                     display: true,
@@ -139,6 +140,7 @@ if (isset($_GET['sku'])) {
           });
         }
       });
+
 
 
 
