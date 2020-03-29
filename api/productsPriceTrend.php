@@ -26,11 +26,15 @@ function getProduct($sku=0){
   if($result = mysqli_query(getMysqli(), "SELECT id,sku,category,subcategory,name,icon,brand,unit,status,type From products where sku='$sku'"))
     while($res = mysqli_fetch_assoc($result)){
       $id=$res['id'];
-      $purchases = array();
+      $purchases = $sales = array();
       if($result1 = mysqli_query(getMysqli(), "SELECT purchaseid,staffid,supplierid,type,date,mrp,quantity,buyprice,sellprice,status From purchases t1, purchaseditems t2 where t1.id=t2.purchaseid and t2.productid=$id order by t2.purchaseid asc"))
         while($res1 = mysqli_fetch_assoc($result1)){
             $purchases[]=$res1;
         }
+      if($result1 = mysqli_query($mysqli, "SELECT salesid,staffid,storecode,cno,date,quantity,mrp,sellprice,status From sales t1, solditems t2 where t1.id=t2.salesid and t2.productid=$id order by t2.salesid asc"))
+      while($res1 = mysqli_fetch_assoc($result1)){
+          $sales[]=$res1;
+      }
 
       $data = array (
         'id' => $res['id'],
@@ -44,6 +48,7 @@ function getProduct($sku=0){
         'unit' => $res['unit'],
         'status' => $res['status'],
         'purchases' => $purchases,
+        'sales' => $sales,
       );
       $json[]=$data;
     }
@@ -55,11 +60,15 @@ function getProducts(){
   if($result = mysqli_query(getMysqli(), "SELECT id,sku,category,subcategory,name,icon,brand,unit,status,type From products order by category ASC, subcategory, name ASC"))
     while($res = mysqli_fetch_assoc($result)){
       $id=$res['id'];
-      $purchases = array();
-      if($result1 = mysqli_query(getMysqli(), "SELECT purchaseid,staffid,supplierid,type,date,mrp,quantity,buyprice,sellprice,status From purchases t1, purchaseditems t2 where t1.id=t2.purchaseid and t2.productid=$id order by t2.purchaseid desc"))
+      $purchases = $sales = array();
+      if($result1 = mysqli_query(getMysqli(), "SELECT purchaseid,staffid,supplierid,type,date,mrp,quantity,buyprice,sellprice,status From purchases t1, purchaseditems t2 where t1.id=t2.purchaseid and t2.productid=$id order by t2.purchaseid asc"))
         while($res1 = mysqli_fetch_assoc($result1)){
             $purchases[]=$res1;
         }
+      if($result1 = mysqli_query($mysqli, "SELECT salesid,staffid,storecode,cno,date,quantity,mrp,sellprice,status From sales t1, solditems t2 where t1.id=t2.salesid and t2.productid=$id order by t2.salesid asc"))
+      while($res1 = mysqli_fetch_assoc($result1)){
+          $sales[]=$res1;
+      }
       $data = array (
         'id' => $res['id'],
         'sku' => $res['sku'],
@@ -72,6 +81,7 @@ function getProducts(){
         'unit' => $res['unit'],
         'status' => $res['status'],
         'purchases' => $purchases,
+        'sales' => $sales,
       );
       $json[]=$data;
     }
