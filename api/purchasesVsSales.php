@@ -18,14 +18,36 @@ function printTableData($fromdate,$todate){
 
     do{
       $purchases = $sales = array();
-      if($result1 = mysqli_query(getMysqli(), "SELECT purchaseid,staffid,supplierid,type,date,mrp,quantity,buyprice,sellprice,status From purchases t1, purchaseditems t2 where t1.id=t2.purchaseid and t1.date='$date' order by t2.purchaseid asc"))
+      if($result1 = mysqli_query(getMysqli(), "SELECT id,date,status From purchases date='$date' order by id asc"))
         while($res1 = mysqli_fetch_assoc($result1)){
-            $purchases[]=$res1;
+          $purchaseid=$res1['id'];
+          $purchaseditems= array();
+          if($result2 = mysqli_query(getMysqli(), "SELECT productid,quantity,buyprice From purchaseditems where purchaseid=$purchaseid order by productid asc"))
+            while($res2 = mysqli_fetch_assoc($result2)){
+                $purchaseditems[]=$res2;
+            }
+            $purchasesdata = array (
+              'purchaseid' => $res1['id'],
+              'status' => $res1['status'],
+              'items' => $purchaseditems
+            );
+            $purchases[]=$purchasesdata;
         }
-      if($result1 = mysqli_query(getMysqli(), "SELECT salesid,staffid,storecode,cno,date,quantity,mrp,sellprice,status From sales t1, solditems t2 where t1.id=t2.salesid and t1.date='$date' order by t2.salesid asc"))
-      while($res1 = mysqli_fetch_assoc($result1)){
-          $sales[]=$res1;
-      }
+        if($result1 = mysqli_query(getMysqli(), "SELECT id,date,status From sales date='$date' order by id asc"))
+          while($res1 = mysqli_fetch_assoc($result1)){
+            $salesid=$res1['id'];
+            $solditems= array();
+            if($result2 = mysqli_query(getMysqli(), "SELECT productid,quantity,sellprice From solditems where salesid=$salesid order by productid asc"))
+              while($res2 = mysqli_fetch_assoc($result2)){
+                  $solditems[]=$res2;
+              }
+              $salesdata = array (
+                'salesid' => $res1['id'],
+                'status' => $res1['status'],
+                'items' => $solditems
+              );
+              $sales[]=$salesdata;
+          }
 
       $data = array (
         'date' => $date,
