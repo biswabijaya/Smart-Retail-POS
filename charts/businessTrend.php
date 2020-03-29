@@ -48,8 +48,8 @@ if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
     url:'http://smartretailpos.pe.hu/api/purchasesVsSales.php',
     type:'get',
     data:{
-      fromdate:<?php echo $_GET['fromdate']; ?>,
-      todate:<?php echo $_GET['todate']; ?>,
+      fromdate:'<?php echo $_GET['fromdate']; ?>',
+      todate:'<?php echo $_GET['todate']; ?>',
     },
     dataType:'json',
     success: function(response){
@@ -147,7 +147,7 @@ if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
             responsive: true,
             title: {
               display: true,
-              text: '<?php echo $_GET['fromdate']; ?><?php echo $_GET['todate']; ?> Business Trend'
+              text: '<?php echo $_GET['fromdate']; ?>  -  <?php echo $_GET['todate']; ?>  Business Trend'
             },
             legend:{
               position: 'left'
