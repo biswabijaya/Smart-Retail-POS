@@ -26,7 +26,7 @@ if (isset($_GET['sku'])) {
 }
 
 ?>
-
+var psku = pname = ''; 
 $.ajax({
   url:'http://smartretailpos.pe.hu/api/products.php',
   type:'get',
