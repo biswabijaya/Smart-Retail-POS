@@ -1,20 +1,23 @@
 <html>
     <head>
         <title>Item Price Trend</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
     </head>
     <body>
       <div class="container">
         <br><br>
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-4">
             <br><br><br><br>
             <div id="selectdata">
 
             </div>
           </div>
-          <div class="col-md-7">
+          <div class="col-md-8">
             <canvas id="myChart" height="200"></canvas>
           </div>
         </div>
@@ -29,14 +32,16 @@
 <?php
 if (isset($_GET['sku'])) {
   echo 'sku='.$_GET['sku'].';';
+  echo ' $("#sku").val('.$_GET['sku'].');';
 } else {
   echo 'sku=1;';
 }
 
 ?>
+
 var psku = pname = '';
 $.ajax({
-  url:'http://smartretailpos.pe.hu/api/products.php',
+  url:'http://smartretailpos.pe.hu/api/productsPriceTrend.php',
   type:'get',
   data:{
     empty:' ',
@@ -46,6 +51,7 @@ $.ajax({
     $('#selectdata').html(response);
   }
 });
+
 
 $.ajax({
   url:'http://smartretailpos.pe.hu/api/productsPriceTrend.php',
@@ -62,6 +68,8 @@ $.ajax({
     var date = [];
     var quantity = [];
     var buyprice = [];
+    var profitpercent = [];
+    var totalprofit = [];
     var data = [];
 
     data=response;
@@ -74,6 +82,8 @@ $.ajax({
         mrp.push(purchase.mrp);
         date.push(purchase.date);
         quantity.push(purchase.quantity);
+        profitpercent.push(Math.round((purchase.sellprice-purchase.buyprice)*100/purchase.buyprice));
+        totalprofit.push(Math.round((purchase.sellprice-purchase.buyprice)*purchase.quantity));
       });
     });
 
@@ -109,16 +119,34 @@ $.ajax({
                         },
                         {
                           label: 'MRP',
+                          hidden: true,
                           borderColor: chartColors.blue,
                           backgroundColor: chartColors.blue,
                           data: mrp
                         },
                         {
                           label: 'Purchase Quantity',
+                          hidden: true,
                           borderDash: [5, 5],
                           borderColor: chartColors.grey,
                           backgroundColor: chartColors.grey,
                           data: quantity
+                        },
+                        {
+                          label: 'Profit Percent',
+                          hidden: true,
+                          borderDash: [5, 2],
+                          borderColor: chartColors.orange,
+                          backgroundColor: chartColors.orange,
+                          data: profitpercent
+                        },
+                        {
+                          label: 'Net Profit',
+                          hidden: true,
+                          borderDash: [5, 3],
+                          borderColor: chartColors.purple,
+                          backgroundColor: chartColors.purple,
+                          data: totalprofit
                         }
                       ]
         },
@@ -129,6 +157,9 @@ $.ajax({
           title: {
             display: true,
             text: psku+' - '+pname+' Price Trend'
+          },
+          legend:{
+            position: 'left'
           },
           tooltips: {
             mode: 'index',

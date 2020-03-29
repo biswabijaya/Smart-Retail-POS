@@ -1,7 +1,10 @@
 <html>
     <head>
         <title>Item Price Trend</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
     </head>
     <body>
@@ -29,6 +32,7 @@
 <?php
 if (isset($_GET['sku'])) {
   echo 'sku='.$_GET['sku'].';';
+  echo ' $("#sku").val('.$_GET['sku'].');';
 } else {
   echo 'sku=1;';
 }
@@ -37,7 +41,7 @@ if (isset($_GET['sku'])) {
 
 var psku = pname = '';
 $.ajax({
-  url:'http://smartretailpos.pe.hu/api/products.php',
+  url:'http://smartretailpos.pe.hu/api/productsPriceTrend.php',
   type:'get',
   data:{
     empty:' ',
@@ -115,12 +119,14 @@ $.ajax({
                         },
                         {
                           label: 'MRP',
+                          hidden: true,
                           borderColor: chartColors.blue,
                           backgroundColor: chartColors.blue,
                           data: mrp
                         },
                         {
                           label: 'Purchase Quantity',
+                          hidden: true,
                           borderDash: [5, 5],
                           borderColor: chartColors.grey,
                           backgroundColor: chartColors.grey,
@@ -128,6 +134,7 @@ $.ajax({
                         },
                         {
                           label: 'Profit Percent',
+                          hidden: true,
                           borderDash: [5, 2],
                           borderColor: chartColors.orange,
                           backgroundColor: chartColors.orange,
@@ -135,6 +142,7 @@ $.ajax({
                         },
                         {
                           label: 'Net Profit',
+                          hidden: true,
                           borderDash: [5, 3],
                           borderColor: chartColors.purple,
                           backgroundColor: chartColors.purple,
