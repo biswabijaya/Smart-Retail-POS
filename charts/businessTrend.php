@@ -69,11 +69,7 @@ if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
         sales.push(item.sales);
         soldamount.push(item.soldamount);
       });
-
-      console.log(data);
-
-      console.log(date);
-
+      
       chartColors = {
       	red: 'rgb(255, 99, 132)',
       	orange: 'rgb(255, 159, 64)',
