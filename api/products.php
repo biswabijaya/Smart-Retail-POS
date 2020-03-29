@@ -1,6 +1,11 @@
 <?php
 include 'db.php';
 
+header("Access-Control-Allow-Origin: http://localhost:8000");
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+
 if (!isset($_GET['sku'])) {
   echo '<form method="get">
   <select name="sku"><option>all</option>';
