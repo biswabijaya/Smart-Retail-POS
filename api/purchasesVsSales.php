@@ -4,8 +4,8 @@ include 'db.php';
 if(!isset($_GET['fromdate']) or !isset($_GET['fromdate'])){
   echo '<form method="get">
     <input class="form-control" type="date" name="fromdate" value="">
-    <input class="form-control" type="date" name="todate" value="">
-    <input class="form-control" type="submit" value="submit">
+    <br><input class="form-control" type="date" name="todate" value="">
+    <br><input class="form-control" type="submit" value="submit">
   </form>';
 } else {
   printTableData($_GET['fromdate'],$_GET['todate']);
