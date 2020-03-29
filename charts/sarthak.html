@@ -28,8 +28,8 @@
           console.log(response)
           for (var i = 0; i < response[0].purchases.length; i++) {
 
-            bprice.push(response[0].purchases[i].buyprice);
-            sprice.push(response[0].purchases[i].sellprice);
+            bprice.push(parseFloat(response[0].purchases[i].buyprice));
+            sprice.push(parseFloat(response[0].purchases[i].sellprice));
 
             date.push(response[0].purchases[i].date);
 
