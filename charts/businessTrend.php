@@ -57,9 +57,7 @@ if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
       var date = [];
       var sales = [];
       var purchases = [];
-      var purchaseditems = [];
       var purchasedamount = [];
-      var solditems = [];
       var soldamount = [];
 
       data=response;
@@ -67,10 +65,8 @@ if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
       data.forEach(function (item){
         date.push(item.date);
         purchases.push(item.purchases);
-        purchaseditems.push(item.purchaseditems);
         purchasedamount.push(item.purchasedamount);
         sales.push(item.sales);
-        solditems.push(item.solditems);
         soldamount.push(item.soldamount);
       });
 
@@ -109,24 +105,9 @@ if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
                             data: soldamount
                           },
                           {
-                            label: 'Purchased Items',
-                            hidden: true,
-                            borderColor: chartColors.green,
-                            backgroundColor: chartColors.green,
-                            data: purchaseditems
-                          },
-                          {
-                            label: 'Sold Items',
-                            hidden: true,
-                            borderDash: [5, 5],
-                            borderColor: chartColors.red,
-                            backgroundColor: chartColors.red,
-                            data: solditems
-                          },
-                          {
                             label: 'Purchases Count',
                             hidden: true,
-                            borderDash: [5, 2],
+                            borderDash: [5, 5],
                             borderColor: chartColors.green,
                             backgroundColor: chartColors.green,
                             data: purchases
@@ -134,7 +115,7 @@ if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
                           {
                             label: 'Sales Count',
                             hidden: true,
-                            borderDash: [5, 3],
+                            borderDash: [5, 5],
                             borderColor: chartColors.red,
                             backgroundColor: chartColors.red,
                             data: sales
