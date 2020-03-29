@@ -125,7 +125,7 @@ if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
                             borderDash: [5, 2],
                             borderColor: chartColors.green,
                             backgroundColor: chartColors.green,
-                            data: purchase
+                            data: purchases
                           },
                           {
                             label: 'Sales Count',
