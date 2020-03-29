@@ -30,8 +30,8 @@ function printTableData($fromdate,$todate){
       if($result1 = mysqli_query(getMysqli(), "SELECT count(distinct salesid) as count, count(productid) as itemcount,date,sum(quantity*sellprice) as amount From sales t1, solditems t2 where t1.id=t2.salesid and t1.date='$date'"))
         while($res1 = mysqli_fetch_assoc($result1)){
           $sales=$res1['count'];
-          $purchaseditems=$res1['itemcount'];
-          $purchasedamount=$res1['amount'];
+          $solditems=$res1['itemcount'];
+          $soldamount=$res1['amount'];
         }
 
       $data = array (
