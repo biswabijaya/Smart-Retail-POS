@@ -28,13 +28,13 @@ function printTableData($fromdate,$todate){
       }
 
       $data = array (
-        'date' => $res['id'],
+        'date' => $date,
         'purchases' => $purchases,
         'sales' => $sales,
       );
-      $json[]=$res;
+      $json[]=$data;
       $date = date ("Y-m-d", strtotime("+1 day", strtotime($date)));
-    } while (strtotime($date) <= strtotime($end_date));
+    } while (strtotime($date) <= strtotime($todate));
 
   echo json_encode($json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 }
