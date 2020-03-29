@@ -63,7 +63,7 @@ if (isset($_GET['sku'])) {
           	grey: 'rgb(201, 203, 207)'
           };
 
-
+          var ctx = document.getElementById('myChart');
           var chart = new Chart(ctx, {
           // The type of chart we want to create
           type: 'line',
