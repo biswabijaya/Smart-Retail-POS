@@ -54,6 +54,7 @@ if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
     dataType:'json',
     success: function(response){
       var data = [];
+      var date = [];
       var sales = [];
       var purchases = [];
       var purchaseditems = [];
