@@ -50,10 +50,10 @@ function printTableData($fromdate,$todate){
         'date' => $date,
         'purchases' => $purchases,
         'purchaseditems' => $purchaseditems,
-        'purchasedamount' => $purchasedamount,
+        'purchasedamount' => round($purchasedamount),
         'sales' => $sales,
         'solditems' => $solditems,
-        'soldamount' => $soldamount,
+        'soldamount' => round($soldamount),
       );
       $json[]=$data;
       $date = date ("Y-m-d", strtotime("+1 day", strtotime($date)));
