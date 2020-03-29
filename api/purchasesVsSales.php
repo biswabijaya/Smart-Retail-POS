@@ -22,14 +22,15 @@ function printTableData($fromdate,$todate){
         while($res1 = mysqli_fetch_assoc($result1)){
           $purchaseid=$res1['id'];
           $purchaseditems= array();
-          if($result2 = mysqli_query(getMysqli(), "SELECT productid,quantity,buyprice From purchaseditems where purchaseid=$purchaseid order by productid asc"))
+          if($result2 = mysqli_query(getMysqli(), "SELECT count(productid) as itemcount, sum(quantity*buyprice) as amount From purchaseditems where purchaseid=$purchaseid order by productid asc"))
             while($res2 = mysqli_fetch_assoc($result2)){
                 $purchaseditems[]=$res2;
             }
             $purchasesdata = array (
               'purchaseid' => $res1['id'],
               'status' => $res1['status'],
-              'items' => $purchaseditems
+              'items' => $res2['itemcount'],
+              'amount' => $res2['amount']
             );
             $purchases[]=$purchasesdata;
         }
@@ -37,14 +38,15 @@ function printTableData($fromdate,$todate){
           while($res1 = mysqli_fetch_assoc($result1)){
             $salesid=$res1['id'];
             $solditems= array();
-            if($result2 = mysqli_query(getMysqli(), "SELECT productid,quantity,sellprice From solditems where salesid=$salesid order by productid asc"))
+            if($result2 = mysqli_query(getMysqli(), "SELECT count(productid) as itemcount, sum(quantity*sellprice) as amount From solditems where salesid=$salesid order by productid asc"))
               while($res2 = mysqli_fetch_assoc($result2)){
                   $solditems[]=$res2;
               }
               $salesdata = array (
                 'salesid' => $res1['id'],
                 'status' => $res1['status'],
-                'items' => $solditems
+                'items' => $res2['itemcount'],
+                'amount' => $res2['amount']
               );
               $sales[]=$salesdata;
           }
