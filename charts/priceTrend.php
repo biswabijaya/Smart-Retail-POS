@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title></title>
+        <title>Item Price Trend</title>
     </head>
     <body>
         <div style="width:50%;">
