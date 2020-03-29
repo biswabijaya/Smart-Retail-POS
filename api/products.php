@@ -8,11 +8,11 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 if (!isset($_GET['sku'])) {
   echo '<form method="get">
-  <select name="sku"><option>all</option>';
+  <select class="form-control" name="sku"><option>all</option>';
   if($result = mysqli_query(getMysqli(), "SELECT * From products order by category ASC, subcategory, name ASC"))
     while($res = mysqli_fetch_array($result))
         echo'<option value="'.$res['sku'].'"> '.$res['category'].' - '.$res['subcategory'].' - '.$res['name'].'</option>';
-  echo'</select>    <input type="submit" value="submit">
+  echo'</select> <br>   <input class="form-control" type="submit" value="submit">
   </form>';
 } else {
   if ($_GET['sku']=='all') {
