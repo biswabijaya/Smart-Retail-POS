@@ -31,7 +31,7 @@ function getProduct($sku=0){
         while($res1 = mysqli_fetch_assoc($result1)){
             $purchases[]=$res1;
         }
-      if($result1 = mysqli_query($mysqli, "SELECT salesid,staffid,storecode,cno,date,quantity,mrp,sellprice,status From sales t1, solditems t2 where t1.id=t2.salesid and t2.productid=$id order by t2.salesid asc"))
+      if($result1 = mysqli_query(getMysqli(), "SELECT salesid,staffid,storecode,cno,date,quantity,mrp,sellprice,status From sales t1, solditems t2 where t1.id=t2.salesid and t2.productid=$id order by t2.salesid asc"))
       while($res1 = mysqli_fetch_assoc($result1)){
           $sales[]=$res1;
       }
@@ -65,7 +65,7 @@ function getProducts(){
         while($res1 = mysqli_fetch_assoc($result1)){
             $purchases[]=$res1;
         }
-      if($result1 = mysqli_query($mysqli, "SELECT salesid,staffid,storecode,cno,date,quantity,mrp,sellprice,status From sales t1, solditems t2 where t1.id=t2.salesid and t2.productid=$id order by t2.salesid asc"))
+      if($result1 = mysqli_query(getMysqli(), "SELECT salesid,staffid,storecode,cno,date,quantity,mrp,sellprice,status From sales t1, solditems t2 where t1.id=t2.salesid and t2.productid=$id order by t2.salesid asc"))
       while($res1 = mysqli_fetch_assoc($result1)){
           $sales[]=$res1;
       }
