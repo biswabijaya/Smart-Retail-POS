@@ -2,10 +2,36 @@
     <head>
         <title>Business Trend</title>
         <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+      	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+      	<meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <style media="screen">
+          .modalspin {
+            display:    none;
+            position:   fixed;
+            z-index:    1000;
+            top:        0;
+            left:       0;
+            height:     100%;
+            width:      100%;
+            background: rgba( 255, 255, 255, .8 )
+                        url('https://i.stack.imgur.com/FhHRx.gif')
+                        50% 50%
+                        no-repeat;
+          }
 
+          /* When the body has the loading class, we turn
+           the scrollbar off with overflow:hidden */
+          body.loading .modalspin {
+            overflow: hidden;
+          }
+
+          /* Anytime the body has the loading class, our
+           modal element will be visible */
+          body.loading .modalspin {
+            display: block;
+          }
+        </style>
     </head>
     <body>
       <div class="container">
@@ -22,6 +48,7 @@
           </div>
         </div>
       </div>
+      <div class="modalspin"><!-- Place at bottom of page --></div>
     </body>
     <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
@@ -62,7 +89,7 @@ chartColors = {
   grey: 'rgb(201, 203, 207)'
 };
 
-var ctx = document.getElementById('myChart');
+var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
 // The type of chart we want to create
 type: 'line',
@@ -158,6 +185,8 @@ function getData() {
         sales.push(item.sales);
         soldamount.push(item.soldamount);
       });
+
+      chart.data.labels = date;
       chart.data.datasets[0].data = purchasedamount;
       chart.data.datasets[1].data = soldamount;
       chart.data.datasets[2].data = purchases;
@@ -186,5 +215,14 @@ function putListen(){
   }
 }
 
+$body=$("body");
+
+$(document).on({
+    ajaxStart: function() { $body.addClass("loading");    },
+     ajaxStop: function() { $body.removeClass("loading"); }
+});
+
 </script>
+
+
 </html>
