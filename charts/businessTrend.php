@@ -41,6 +41,100 @@ $.ajax({
     $('#selectdata').html(response);
   }
 });
+
+var data = [];
+var date = [];
+var sales = [];
+var purchases = [];
+var purchasedamount = [];
+var soldamount = [];
+
+chartColors = {
+  red: 'rgb(255, 99, 132)',
+  orange: 'rgb(255, 159, 64)',
+  yellow: 'rgb(255, 205, 86)',
+  green: 'rgb(75, 192, 192)',
+  blue: 'rgb(54, 162, 235)',
+  purple: 'rgb(153, 102, 255)',
+  grey: 'rgb(201, 203, 207)'
+};
+
+var ctx = document.getElementById('myChart');
+var chart = new Chart(ctx, {
+// The type of chart we want to create
+type: 'line',
+// The data for our dataset
+    data: {
+        labels: date ,
+        datasets: [
+                    {
+                      label: 'Purchase Amount',
+                      borderColor: chartColors.green,
+                      backgroundColor: chartColors.green,
+                      data: purchasedamount
+                    },
+                    {
+                      label: 'Sales Amount',
+                      borderColor: chartColors.red,
+                      backgroundColor: chartColors.red,
+                      data: soldamount
+                    },
+                    {
+                      label: 'Purchases Count',
+                      hidden: true,
+                      borderDash: [5, 5],
+                      borderColor: chartColors.green,
+                      backgroundColor: chartColors.green,
+                      data: purchases
+                    },
+                    {
+                      label: 'Sales Count',
+                      hidden: true,
+                      borderDash: [5, 5],
+                      borderColor: chartColors.red,
+                      backgroundColor: chartColors.red,
+                      data: sales
+                    }
+                  ]
+    },
+
+    // Configuration options go here
+    options: {
+      responsive: true,
+      title: {
+        display: true,
+        text: 'Business Trend'
+      },
+      legend:{
+        position: 'left'
+      },
+      tooltips: {
+        mode: 'index',
+        intersect: false,
+      },
+      hover: {
+        mode: 'nearest',
+        intersect: true
+      },
+      elements: {
+        line: {
+          fill: false
+        }
+      },
+      scales: {
+        xAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Dates in (YYYY-MM-DD)'
+          }
+        }]
+      }
+    }
+
+});
+
+
 <?php
 if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
   ?>
@@ -53,12 +147,7 @@ if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
     },
     dataType:'json',
     success: function(response){
-      var data = [];
-      var date = [];
-      var sales = [];
-      var purchases = [];
-      var purchasedamount = [];
-      var soldamount = [];
+
 
       data=response;
 
@@ -69,91 +158,13 @@ if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
         sales.push(item.sales);
         soldamount.push(item.soldamount);
       });
-      
-      chartColors = {
-      	red: 'rgb(255, 99, 132)',
-      	orange: 'rgb(255, 159, 64)',
-      	yellow: 'rgb(255, 205, 86)',
-      	green: 'rgb(75, 192, 192)',
-      	blue: 'rgb(54, 162, 235)',
-      	purple: 'rgb(153, 102, 255)',
-      	grey: 'rgb(201, 203, 207)'
-      };
 
-      var ctx = document.getElementById('myChart');
-      var chart = new Chart(ctx, {
-      // The type of chart we want to create
-      type: 'line',
-      // The data for our dataset
-          data: {
-              labels: date ,
-              datasets: [
-                          {
-                            label: 'Purchase Amount',
-                            borderColor: chartColors.green,
-                            backgroundColor: chartColors.green,
-                            data: purchasedamount
-                          },
-                          {
-                            label: 'Sales Amount',
-                            borderColor: chartColors.red,
-                            backgroundColor: chartColors.red,
-                            data: soldamount
-                          },
-                          {
-                            label: 'Purchases Count',
-                            hidden: true,
-                            borderDash: [5, 5],
-                            borderColor: chartColors.green,
-                            backgroundColor: chartColors.green,
-                            data: purchases
-                          },
-                          {
-                            label: 'Sales Count',
-                            hidden: true,
-                            borderDash: [5, 5],
-                            borderColor: chartColors.red,
-                            backgroundColor: chartColors.red,
-                            data: sales
-                          }
-                        ]
-          },
-
-          // Configuration options go here
-          options: {
-            responsive: true,
-            title: {
-              display: true,
-              text: '<?php echo $_GET['fromdate']; ?>  -  <?php echo $_GET['todate']; ?>  Business Trend'
-            },
-            legend:{
-              position: 'left'
-            },
-            tooltips: {
-              mode: 'index',
-              intersect: false,
-            },
-            hover: {
-              mode: 'nearest',
-              intersect: true
-            },
-            elements: {
-      				line: {
-      					fill: false
-      				}
-            },
-            scales: {
-              xAxes: [{
-                display: true,
-                scaleLabel: {
-                  display: true,
-                  labelString: 'Dates in (YYYY-MM-DD)'
-                }
-              }]
-            }
-          }
-
-      });
+      chart.data.datasets[0].data = purchasedamount;
+      chart.data.datasets[1].data = soldamount;
+      chart.data.datasets[2].data = purchases;
+      chart.data.datasets[3].data = sales;
+      chart.update();
+            
     }
   });
   <?php
