@@ -7,8 +7,8 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 if(!isset($_GET['fromdate']) or !isset($_GET['fromdate'])){
   echo '<form method="get">
-    <input class="form-control" type="date" name="fromdate" value="">
-    <br><input class="form-control" type="date" name="todate" value="">
+    <input class="form-control" type="date" name="fromdate" value="'.date("Y-m-d").'">
+    <br><input class="form-control" type="date" name="todate" value="'.date("Y-m-d").'">
     <br><input class="form-control" type="submit" value="submit">
   </form>';
 } else {
