@@ -138,6 +138,12 @@ type: 'line',
 });
 
 function getData() {
+  var data = [];
+  var date = [];
+  var sales = [];
+  var purchases = [];
+  var purchasedamount = [];
+  var soldamount = [];
   $.ajax({
     url:'http://smartretailpos.pe.hu/api/purchasesVsSales.php',
     type:'get',

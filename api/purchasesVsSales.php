@@ -7,10 +7,15 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 if(!isset($_GET['fromdate']) or !isset($_GET['fromdate'])){
   echo '<form id="form" method="get">
-    <input class="form-control" type="date" name="fromdate" id="fromdate" onchange="listen(this);" value="'.date("Y-m-d").'">
-    <br><input class="form-control" type="date" name="todate" id="todate" onchange="listen(this);" value="'.date("Y-m-d").'">
-    <br><button class="form-control" type="button" id="submit" value="submit"> Submit </button>
-  </form>';
+          <div class="form-group">
+            <label class="control-label">From Date</label>
+            <input class="form-control" type="date" name="fromdate" id="fromdate" onchange="listen(this);" value="'.date("Y-m-d").'">
+          </div>
+          <div class="form-group">
+            <label class="control-label">To Date</label>
+            <input class="form-control" type="date" name="todate" id="todate" onchange="listen(this);" value="'.date("Y-m-d").'">
+          </div>
+        </form>';
 } else {
   printTableData($_GET['fromdate'],$_GET['todate']);
 }
