@@ -161,17 +161,9 @@ function getData() {
   });
 }
 
-$(document).ready(function() {
-  $('#submit').click(function (e) {
-      e.preventDefault();
-      setListener();
-      getData();
-  });
-});
-
-function setListener() {
-  localStorage.setItem('btfilter-fromdate', $('#fromdate').val());
-  localStorage.setItem('btfilter-todate', $('#todate').val());
+function listen(event){
+  localStorage.setItem('btfilter-'+event.name, event.value);
+  getData();
 }
 
 function putListen(){
