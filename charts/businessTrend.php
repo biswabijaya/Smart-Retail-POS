@@ -30,6 +30,7 @@
 
 <script>
 var psku = pname = '';
+
 $.ajax({
   url:'http://smartretailpos.pe.hu/api/purchasesVsSales.php',
   type:'get',
@@ -39,6 +40,8 @@ $.ajax({
   datatype: 'html',
   success: function(response){
     $('#selectdata').html(response);
+    setTimeout(putListen, 1000);
+    setTimeout(getData, 1500);
   }
 });
 
@@ -134,23 +137,14 @@ type: 'line',
 
 });
 
-
-<?php
-if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
-  ?>
+function getData() {
   $.ajax({
     url:'http://smartretailpos.pe.hu/api/purchasesVsSales.php',
     type:'get',
-    data:{
-      fromdate:'<?php echo $_GET['fromdate']; ?>',
-      todate:'<?php echo $_GET['todate']; ?>',
-    },
+    data: $('#form').serialize(),
     dataType:'json',
     success: function(response){
-
-
       data=response;
-
       data.forEach(function (item){
         date.push(item.date);
         purchases.push(item.purchases);
@@ -158,19 +152,41 @@ if (isset($_GET['fromdate']) and isset($_GET['todate'])) {
         sales.push(item.sales);
         soldamount.push(item.soldamount);
       });
-
       chart.data.datasets[0].data = purchasedamount;
       chart.data.datasets[1].data = soldamount;
       chart.data.datasets[2].data = purchases;
       chart.data.datasets[3].data = sales;
       chart.update();
-            
     }
   });
-  <?php
 }
-?>
 
+$(document).ready(function() {
+  $('#submit').click(function (e) {
+      e.preventDefault();
+      setListener();
+      getData();
+  });
+});
+
+function setListener() {
+  localStorage.setItem('btfilter-fromdate', $('#fromdate').val());
+  localStorage.setItem('btfilter-todate', $('#todate').val());
+}
+
+function putListen(){
+  if(!localStorage.getItem("btfilter-fromdate")) {
+    localStorage.setItem('btfilter-fromdate', $('#fromdate').val());
+  } else{
+    $('#fromdate').val(localStorage.getItem('btfilter-fromdate'));
+  }
+
+  if(!localStorage.getItem("btfilter-todate")) {
+    localStorage.setItem('btfilter-todate', $('#todate').val());
+  } else{
+    $('#todate').val(localStorage.getItem('btfilter-todate'));
+  }
+}
 
 </script>
 </html>

@@ -6,10 +6,10 @@ header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 if(!isset($_GET['fromdate']) or !isset($_GET['fromdate'])){
-  echo '<form method="get">
-    <input class="form-control" type="date" name="fromdate" value="'.date("Y-m-d").'">
-    <br><input class="form-control" type="date" name="todate" value="'.date("Y-m-d").'">
-    <br><input class="form-control" type="submit" value="submit">
+  echo '<form id="form" method="get">
+    <input class="form-control" type="date" name="fromdate" id="fromdate" value="'.date("Y-m-d").'">
+    <br><input class="form-control" type="date" name="todate" id="todate" value="'.date("Y-m-d").'">
+    <br><button class="form-control" type="button" id="submit" value="submit"> Submit </button>
   </form>';
 } else {
   printTableData($_GET['fromdate'],$_GET['todate']);
