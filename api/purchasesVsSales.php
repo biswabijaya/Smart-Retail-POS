@@ -1,12 +1,21 @@
 <?php
 include 'db.php';
 
+header("Access-Control-Allow-Origin: http://localhost:8000");
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
 if(!isset($_GET['fromdate']) or !isset($_GET['fromdate'])){
-  echo '<form method="get">
-    <input class="form-control" type="date" name="fromdate" value="">
-    <br><input class="form-control" type="date" name="todate" value="">
-    <br><input class="form-control" type="submit" value="submit">
-  </form>';
+  echo '<form id="form" method="get">
+          <div class="form-group">
+            <label class="control-label">From Date</label>
+            <input class="form-control" type="date" name="fromdate" id="fromdate" onchange="listen(this);" value="'.date("Y-m-d").'">
+          </div>
+          <div class="form-group">
+            <label class="control-label">To Date</label>
+            <input class="form-control" type="date" name="todate" id="todate" onchange="listen(this);" value="'.date("Y-m-d").'">
+          </div>
+        </form>';
 } else {
   printTableData($_GET['fromdate'],$_GET['todate']);
 }
