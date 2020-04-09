@@ -1,5 +1,5 @@
 <?php
-include '../reatail/shopdb.php';
+include 'db.php';
 
 if (((isset($_GET['cno']) and isset($_GET['action'])) and $_GET['action']=="loginuser" )) {
   $cno = $_GET['cno']; $id = 0;
