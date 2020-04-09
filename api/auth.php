@@ -11,12 +11,12 @@ if (((isset($_GET['cno']) and isset($_GET['action'])) and $_GET['action']=="logi
   echo $id;
 }
 
-if (((isset($_GET['id']) and isset($_GET['action'])) and $_GET['action']=="getdata" )) {
-   echo getUserDataJson($_GET['id']);
+if (((isset($_GET['cno']) and isset($_GET['action'])) and $_GET['action']=="getdata" )) {
+   echo getUserDataJson($_GET['cno']);
 }
 
-function getUserDataJson($id=0){
-  if($query = mysqli_query($mysqli,"SELECT * FROM staffs WHERE id = $id")){
+function getUserDataJson($cno=0){
+  if($query = mysqli_query($mysqli,"SELECT * FROM staffs WHERE cno = $cno")){
     while ($row = mysqli_fetch_array($query)) {
       json_encode($row);
     }
