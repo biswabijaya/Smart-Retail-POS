@@ -19,7 +19,7 @@ else echo 0;
 
 function getUserDataJson($cno=0){
   if($query = mysqli_query(getMysqli(),"SELECT * FROM staffs WHERE cno = $cno")){
-    while ($row = mysqli_fetch_array($query)) {
+    while ($row = mysqli_fetch_assoc($query)) {
     echo  json_encode($row);
     }
   }
