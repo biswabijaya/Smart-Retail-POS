@@ -16,7 +16,7 @@ if (((isset($_GET['cno']) and isset($_GET['action'])) and $_GET['action']=="getd
 }
 
 function getUserDataJson($cno=0){
-  if($query = mysqli_query($mysqli,"SELECT * FROM staffs WHERE cno = $cno")){
+  if($query = mysqli_query(getMysqli(),"SELECT * FROM staffs WHERE cno = $cno")){
     while ($row = mysqli_fetch_array($query)) {
       json_encode($row);
     }
