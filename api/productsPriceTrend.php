@@ -28,11 +28,11 @@ function getProduct($sku=0){
   $json = array(); // declre array
   $custom='';
   if(isset($_GET['fromdate']) and isset($_GET['todate'])){
-    $custom=" and date (between '".$_GET['fromdate']."' and '".$_GET['todate']."')";
+    $custom=" and t1.date (between '".$_GET['fromdate']."' and '".$_GET['todate']."')";
   } else if (isset($_GET['fromdate'])) {
-    $custom=" and date > '".$_GET['fromdate']."'";
+    $custom=" and t1.date > '".$_GET['fromdate']."'";
   } else if (isset($_GET['todate'])) {
-    $custom=" and date < '".$_GET['todate']."'";
+    $custom=" and t1.date < '".$_GET['todate']."'";
   }
   echo $custom;
   if($result = mysqli_query(getMysqli(), "SELECT id,sku,category,subcategory,name,icon,brand,unit,status,type From products where sku='$sku'"))
@@ -71,11 +71,11 @@ function getProducts(){
   $json = array(); // declre array
   $custom='';
   if(isset($_GET['fromdate']) and isset($_GET['todate'])){
-    $custom=" and date (between '".$_GET['fromdate']."' and '".$_GET['todate']."')";
+    $custom=" and t1.date (between '".$_GET['fromdate']."' and '".$_GET['todate']."')";
   } else if (isset($_GET['fromdate'])) {
-    $custom=" and date > '".$_GET['fromdate']."'";
+    $custom=" and t1.date > '".$_GET['fromdate']."'";
   } else if (isset($_GET['todate'])) {
-    $custom=" and date < '".$_GET['todate']."'";
+    $custom=" and t1.date < '".$_GET['todate']."'";
   }
   if($result = mysqli_query(getMysqli(), "SELECT id,sku,category,subcategory,name,icon,brand,unit,status,type From products order by category ASC, subcategory, name ASC"))
     while($res = mysqli_fetch_assoc($result)){
