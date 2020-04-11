@@ -265,7 +265,7 @@ function getPriceTrendData() {
       chart.data.datasets[4].data = profitpercent;
       chart.data.datasets[4].data = totalprofit;
 
-      chart.options.title.text='Price Trend - '+sku+' - '+fromdate+' -'+todate;
+      chart.options.title.text='Price Trend - '+localStorage.getItem("ptfilter-productSku")+' - '+localStorage.getItem("ptfilter-fromdate")+' -'+localStorage.getItem("ptfilter-todate");
       chart.update();
       Toast.fire({
         title: "Chart Loaded!",
