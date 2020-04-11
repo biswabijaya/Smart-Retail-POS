@@ -34,7 +34,7 @@ function getProduct($sku=0){
   } else if (isset($_GET['todate'])) {
     $custom=" and t1.date < '".$_GET['todate']."'";
   }
-  echo "SELECT purchaseid,staffid,supplierid,type,date,mrp,quantity,buyprice,sellprice,status From purchases t1, purchaseditems t2 where t1.id=t2.purchaseid and  t2.productid=$id $custom order by t2.purchaseid asc";
+
   if($result = mysqli_query(getMysqli(), "SELECT id,sku,category,subcategory,name,icon,brand,unit,status,type From products where sku='$sku'"))
     while($res = mysqli_fetch_assoc($result)){
       $id=$res['id'];
