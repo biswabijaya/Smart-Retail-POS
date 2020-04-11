@@ -48,6 +48,8 @@ function getProduct($sku=0){
           $sales[]=$res1;
       }
 
+      echo "purchaseid,staffid,supplierid,type,date,mrp,quantity,buyprice,sellprice,status From purchases t1, purchaseditems t2 where t1.id=t2.purchaseid and t2.productid=$id $custom order by t2.purchaseid asc";
+
       $data = array (
         'id' => $res['id'],
         'sku' => $res['sku'],
