@@ -28,7 +28,7 @@ function getProduct($sku=0){
   $json = array(); // declre array
   $custom='';
   if(isset($_GET['fromdate']) and isset($_GET['todate'])){
-    $custom=" and (t1.date between '".$_GET['fromdate']."' and '".$_GET['todate']."')";
+    $custom=" and t1.date between '".$_GET['fromdate']."' and '".$_GET['todate']."' ";
   } else if (isset($_GET['fromdate'])) {
     $custom=" and t1.date > '".$_GET['fromdate']."'";
   } else if (isset($_GET['todate'])) {
@@ -73,7 +73,7 @@ function getProducts(){
   $json = array(); // declre array
   $custom='';
   if(isset($_GET['fromdate']) and isset($_GET['todate'])){
-    $custom=" and (t1.date between '".$_GET['fromdate']."' and '".$_GET['todate']."')";
+    $custom=" and t1.date between '".$_GET['fromdate']."' and '".$_GET['todate']."' ";
   } else if (isset($_GET['fromdate'])) {
     $custom=" and t1.date > '".$_GET['fromdate']."'";
   } else if (isset($_GET['todate'])) {
