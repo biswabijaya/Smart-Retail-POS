@@ -238,31 +238,40 @@ function getPriceTrendData() {
     type:'get',
     data: {
       fromdate:localStorage.getItem("ptfilter-fromdate"),
-      todate:localStorage.getItem("ptfilter-todate")
+      todate:localStorage.getItem("ptfilter-todate"),
+      sku:localStorage.getItem("ptfilter-productSku")
     },
     dataType:'json',
     success: function(response){
       data=response;
       data.forEach(function (item){
-        date.push(item.date);
-        purchases.push(item.purchases);
-        purchasedamount.push(item.purchasedamount);
-        sales.push(item.sales);
-        soldamount.push(item.soldamount);
-        purchasedtotal+=parseInt(item.purchasedamount);
-        soldtotal+=parseInt(item.soldamount);
-        balance+=parseInt(item.soldamount)-parseInt(item.purchasedamount);
-        bal.push(balance);
+        pname = item.name; psku = item.sku;
+        item.purchases.forEach(function(purchase){
+          buyprice.push(purchase.buyprice);
+          sellprice.push(purchase.sellprice);
+          mrp.push(purchase.mrp);
+          date.push(purchase.date);
+          quantity.push(purchase.quantity);
+          profitpercent.push(Math.round((purchase.sellprice-purchase.buyprice)*100/purchase.buyprice));
+          totalprofit.push(Math.round((purchase.sellprice-purchase.buyprice)*purchase.quantity));
+        });
       });
 
-      chart.data.labels = date;
-      chart.data.datasets[0].data = purchasedamount;
-      chart.data.datasets[1].data = soldamount;
-      chart.data.datasets[2].data = purchases;
-      chart.data.datasets[3].data = sales;
-      chart.data.datasets[4].data = bal;
+      console.log(data);
+      console.log(date);
+      console.log(buyprice);
+      console.log(sellprice);
+      console.log(mrp);
 
-      chart.options.title.text='TP: '+toINR(purchasedtotal)+' | TS: '+toINR(soldtotal)+ ' | Balance: '+toINR(balance);
+      chart.data.labels = date;
+      chart.data.datasets[0].data = buyprice;
+      chart.data.datasets[1].data = sellprice;
+      chart.data.datasets[2].data = mrp;
+      chart.data.datasets[3].data = quantity;
+      chart.data.datasets[4].data = profitpercent;
+      chart.data.datasets[4].data = totalprofit;
+
+      //chart.options.title.text='TP: '+toINR(purchasedtotal)+' | TS: '+toINR(soldtotal)+ ' | Balance: '+toINR(balance);
       chart.update();
       Toast.fire({
         title: "Chart Loaded!",
@@ -321,16 +330,17 @@ $( "#priceTrendCanvas" ).click(function() {
 
 
 function changePriceTrendDate() {
-  fromdate=localStorage.getItem("ptfilter-fromdate");
-  todate=localStorage.getItem("ptfilter-todate");
-  productSku=localStorage.getItem("ptfilter-productSku");
+    fromdate=localStorage.getItem("ptfilter-fromdate");
+    todate=localStorage.getItem("ptfilter-todate");
+    productSku=localStorage.getItem("ptfilter-productSku");
+
   Pop.fire({
     title:'Business Trend Range',
     html:
       '<div class="row">'+
-      '<div class="col"><label class="control-label">Choose Product</label><select name="productSku" id="productSku" onchange="PTlisten(this);" class="form-control" value="'+productSku+'">'+
+      '<div class="col"><label class="control-label">Choose Product</label><input list="productlist" name="productSku" id="productSku" onchange="PTlisten(this);" class="form-control" value="'+productSku+'"><datalist id="productlist">'+
       productOptionsDom+
-      '</select></div></div><div class="row">'+
+      '</datalist></div></div><div class="row">'+
       '<div class="col"><label class="control-label">From Date</label><input type="date" name="fromdate" id="fromdate" onchange="PTlisten(this);" class="form-control" value="'+fromdate+'"></div>' +
       '<div class="col"><label class="control-label">To Date</label><input type="date" name="todate" id="todate" onchange="PTlisten(this);" class="form-control" value="'+todate+'"></div>'+
       '</div>',
