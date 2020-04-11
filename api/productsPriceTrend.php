@@ -13,25 +13,37 @@ if (!isset($_GET['sku'])) {
         echo'<option value="'.$res['sku'].'"> '.$res['category'].' - '.$res['subcategory'].' - '.$res['name'].'</option>';
   echo'</select> <br>   <input class="form-control" type="submit" value="submit">
   </form>';
-} else {
+} else if(isset($_GET['sku'])){
   if ($_GET['sku']=='all') {
     getProducts();
   } else {
     getProduct($_GET['sku']);
   }
+} else if(isset($_GET['productOptions'])){
+  if($result = mysqli_query(getMysqli(), "SELECT * From products order by category ASC, subcategory, name ASC"))
+    while($res = mysqli_fetch_array($result))
+        echo'<option value="'.$res['sku'].'"> '.$res['category'].' - '.$res['subcategory'].' - '.$res['name'].'</option>';
 }
 
 function getProduct($sku=0){
   $json = array(); // declre array
+  $custom='';
+  if(isset($_GET['fromdate']) and isset($_GET['todate'])){
+    $custom=" and date (between '".$_GET['fromdate']."' and '".$_GET['todate']."')";
+  } else if (isset($_GET['fromdate'])) {
+    $custom=" and date > '".$_GET['fromdate']."'";
+  } else if (isset($_GET['todate'])) {
+    $custom=" and date < '".$_GET['todate']."'";
+  }
   if($result = mysqli_query(getMysqli(), "SELECT id,sku,category,subcategory,name,icon,brand,unit,status,type From products where sku='$sku'"))
     while($res = mysqli_fetch_assoc($result)){
       $id=$res['id'];
       $purchases = $sales = array();
-      if($result1 = mysqli_query(getMysqli(), "SELECT purchaseid,staffid,supplierid,type,date,mrp,quantity,buyprice,sellprice,status From purchases t1, purchaseditems t2 where t1.id=t2.purchaseid and t2.productid=$id order by t2.purchaseid asc"))
+      if($result1 = mysqli_query(getMysqli(), "SELECT purchaseid,staffid,supplierid,type,date,mrp,quantity,buyprice,sellprice,status From purchases t1, purchaseditems t2 where t1.id=t2.purchaseid and t2.productid=$id $custom order by t2.purchaseid asc"))
         while($res1 = mysqli_fetch_assoc($result1)){
             $purchases[]=$res1;
         }
-      if($result1 = mysqli_query(getMysqli(), "SELECT salesid,staffid,storecode,cno,date,quantity,mrp,sellprice,status From sales t1, solditems t2 where t1.id=t2.salesid and t2.productid=$id order by t2.salesid asc"))
+      if($result1 = mysqli_query(getMysqli(), "SELECT salesid,staffid,storecode,cno,date,quantity,mrp,sellprice,status From sales t1, solditems t2 where t1.id=t2.salesid and t2.productid=$id  $custom order by t2.salesid asc"))
       while($res1 = mysqli_fetch_assoc($result1)){
           $sales[]=$res1;
       }
@@ -57,15 +69,23 @@ function getProduct($sku=0){
 
 function getProducts(){
   $json = array(); // declre array
+  $custom='';
+  if(isset($_GET['fromdate']) and isset($_GET['todate'])){
+    $custom=" and date (between '".$_GET['fromdate']."' and '".$_GET['todate']."')";
+  } else if (isset($_GET['fromdate'])) {
+    $custom=" and date > '".$_GET['fromdate']."'";
+  } else if (isset($_GET['todate'])) {
+    $custom=" and date < '".$_GET['todate']."'";
+  }
   if($result = mysqli_query(getMysqli(), "SELECT id,sku,category,subcategory,name,icon,brand,unit,status,type From products order by category ASC, subcategory, name ASC"))
     while($res = mysqli_fetch_assoc($result)){
       $id=$res['id'];
       $purchases = $sales = array();
-      if($result1 = mysqli_query(getMysqli(), "SELECT purchaseid,staffid,supplierid,type,date,mrp,quantity,buyprice,sellprice,status From purchases t1, purchaseditems t2 where t1.id=t2.purchaseid and t2.productid=$id order by t2.purchaseid asc"))
+      if($result1 = mysqli_query(getMysqli(), "SELECT purchaseid,staffid,supplierid,type,date,mrp,quantity,buyprice,sellprice,status From purchases t1, purchaseditems t2 where t1.id=t2.purchaseid and  t2.productid=$id $custom order by t2.purchaseid asc"))
         while($res1 = mysqli_fetch_assoc($result1)){
             $purchases[]=$res1;
         }
-      if($result1 = mysqli_query(getMysqli(), "SELECT salesid,staffid,storecode,cno,date,quantity,mrp,sellprice,status From sales t1, solditems t2 where t1.id=t2.salesid and t2.productid=$id order by t2.salesid asc"))
+      if($result1 = mysqli_query(getMysqli(), "SELECT salesid,staffid,storecode,cno,date,quantity,mrp,sellprice,status From sales t1, solditems t2 where t1.id=t2.salesid and t2.productid=$id $custom order by t2.salesid asc"))
       while($res1 = mysqli_fetch_assoc($result1)){
           $sales[]=$res1;
       }
