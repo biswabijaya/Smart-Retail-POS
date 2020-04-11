@@ -329,7 +329,7 @@ function changePriceTrendDate() {
     productSku=localStorage.getItem("ptfilter-productSku");
 
   Pop.fire({
-    title:'Business Trend Range',
+    title:'Price Trend Filter',
     html:
       '<div class="row">'+
       '<div class="col"><label class="control-label">Choose Product</label><input list="productlist" name="productSku" id="productSku" onchange="PTlisten(this);" class="form-control" value="'+productSku+'"><datalist id="productlist">'+
