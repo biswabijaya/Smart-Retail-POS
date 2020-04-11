@@ -323,6 +323,7 @@ $( "#priceTrendCanvas" ).click(function() {
 function changePriceTrendDate() {
   fromdate=localStorage.getItem("ptfilter-fromdate");
   todate=localStorage.getItem("ptfilter-todate");
+  productSku=localStorage.getItem("ptfilter-productSku");
   Pop.fire({
     title:'Business Trend Range',
     html:

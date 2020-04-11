@@ -5,7 +5,11 @@ header("Access-Control-Allow-Origin: http://localhost:8000");
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
-if (!isset($_GET['sku'])) {
+if(isset($_GET['productOptions'])){
+  if($result = mysqli_query(getMysqli(), "SELECT * From products order by category ASC, subcategory, name ASC"))
+    while($res = mysqli_fetch_array($result))
+        echo'<option value="'.$res['sku'].'"> '.$res['category'].' - '.$res['subcategory'].' - '.$res['name'].'</option>';
+} else if (!isset($_GET['sku'])) {
   echo '<form method="get">
   <select class="form-control" name="sku"><option>all</option>';
   if($result = mysqli_query(getMysqli(), "SELECT * From products order by category ASC, subcategory, name ASC"))
@@ -19,12 +23,7 @@ if (!isset($_GET['sku'])) {
   } else {
     getProduct($_GET['sku']);
   }
-} else if(isset($_GET['productOptions'])){
-  if($result = mysqli_query(getMysqli(), "SELECT * From products order by category ASC, subcategory, name ASC"))
-    while($res = mysqli_fetch_array($result))
-        echo'<option value="'.$res['sku'].'"> '.$res['category'].' - '.$res['subcategory'].' - '.$res['name'].'</option>';
 }
-
 function getProduct($sku=0){
   $json = array(); // declre array
   $custom='';
