@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 if(isset($_GET['productOptions'])){
   if($result = mysqli_query(getMysqli(), "SELECT * From products order by category ASC, subcategory, name ASC"))
     while($res = mysqli_fetch_array($result))
-        echo'<option value="'.$res['sku'].'"> '.$res['category'].' - '.$res['subcategory'].' - '.$res['name'].'</option>';
+        echo'<option value="'.$res['id'].'"> '.$res['category'].' - '.$res['subcategory'].' - '.$res['name'].' - '.$res['sku'].'</option>';
 } else if (!isset($_GET['sku'])) {
   echo '<form method="get">
   <select class="form-control" name="sku"><option>all</option>';
@@ -28,7 +28,7 @@ function getProduct($sku=0){
   $json = array(); // declre array
   $custom='';
   if(isset($_GET['fromdate']) and isset($_GET['todate'])){
-    $custom=" and t1.date (between '".$_GET['fromdate']."' and '".$_GET['todate']."')";
+    $custom=" and (t1.date between '".$_GET['fromdate']."' and '".$_GET['todate']."')";
   } else if (isset($_GET['fromdate'])) {
     $custom=" and t1.date > '".$_GET['fromdate']."'";
   } else if (isset($_GET['todate'])) {
