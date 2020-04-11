@@ -184,7 +184,7 @@ type: 'line',
       responsive: true,
       title: {
         display: true,
-        text: psku+' - '+pname+' Price Trend'
+        text:  'Price Trend'
       },
       legend:{
         position: 'left'
