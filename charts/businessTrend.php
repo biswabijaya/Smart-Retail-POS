@@ -96,7 +96,7 @@
 <script>
 
 //businessTrendSetup
-apiurl='http://smartretailpos.pe.hu/api/purchasesVsSales.php';
+btapiurl='http://smartretailpos.pe.hu/api/purchasesVsSales.php';
 setTimeout(BTputListen, 1000);
 setTimeout(getBusunessTrendData, 1500);
 
@@ -112,7 +112,7 @@ var soldtotal = 0;
 var balance = 0;
 
 var busunessTrendCtx = document.getElementById('busunessTrendCanvas').getContext('2d');
-var chart = new Chart(busunessTrendCtx, {
+var btchart = new Chart(busunessTrendCtx, {
 // The type of chart we want to create
 type: 'line',
 // The data for our dataset
@@ -205,7 +205,7 @@ function getBusunessTrendData() {
   var soldtotal = 0;
   var balance = 0;
   $.ajax({
-    url:apiurl,
+    url:btapiurl,
     type:'get',
     data: {
       fromdate:localStorage.getItem("btfilter-fromdate"),
@@ -226,15 +226,15 @@ function getBusunessTrendData() {
         bal.push(balance);
       });
 
-      chart.data.labels = date;
-      chart.data.datasets[0].data = purchasedamount;
-      chart.data.datasets[1].data = soldamount;
-      chart.data.datasets[2].data = purchases;
-      chart.data.datasets[3].data = sales;
-      chart.data.datasets[4].data = bal;
+      btchart.data.labels = date;
+      btchart.data.datasets[0].data = purchasedamount;
+      btchart.data.datasets[1].data = soldamount;
+      btchart.data.datasets[2].data = purchases;
+      btchart.data.datasets[3].data = sales;
+      btchart.data.datasets[4].data = bal;
 
-      chart.options.title.text='TP: '+toINR(purchasedtotal)+' | TS: '+toINR(soldtotal)+ ' | Balance: '+toINR(balance);
-      chart.update();
+      btchart.options.title.text='TP: '+toINR(purchasedtotal)+' | TS: '+toINR(soldtotal)+ ' | Balance: '+toINR(balance);
+      btchart.update();
       Toast.fire({
         title: "Chart Loaded!",
         icon: "success"

@@ -96,14 +96,14 @@
 <script>
 
 //businessTrendSetup
-apiurl='http://smartretailpos.pe.hu/api/productsPriceTrend.php';
+ptapiurl='http://smartretailpos.pe.hu/api/productsPriceTrend.php';
 setTimeout(PTputListen, 1000);
 setTimeout(getPriceTrendData, 1500);
 var psku = pname = '';
 
 var productOptionsDom;
 $.ajax({
-  url:apiurl,
+  url:ptapiurl,
   type:'get',
   data:{
     productOptions:'Dom',
@@ -126,7 +126,7 @@ var profitpercent = [];
 var totalprofit = [];
 
 var priceTrendCtx = document.getElementById('priceTrendCanvas').getContext('2d');
-var chart = new Chart(priceTrendCtx, {
+var ptchart = new Chart(priceTrendCtx, {
 // The type of chart we want to create
 type: 'line',
 // The data for our dataset
@@ -234,7 +234,7 @@ function getPriceTrendData() {
   var totalprofit = [];
 
   $.ajax({
-    url:apiurl,
+    url:ptapiurl,
     type:'get',
     data: {
       fromdate:localStorage.getItem("ptfilter-fromdate"),
@@ -257,16 +257,16 @@ function getPriceTrendData() {
         });
       });
 
-      chart.data.labels = date;
-      chart.data.datasets[0].data = buyprice;
-      chart.data.datasets[1].data = sellprice;
-      chart.data.datasets[2].data = mrp;
-      chart.data.datasets[3].data = quantity;
-      chart.data.datasets[4].data = profitpercent;
-      chart.data.datasets[4].data = totalprofit;
+      ptchart.data.labels = date;
+      ptchart.data.datasets[0].data = buyprice;
+      ptchart.data.datasets[1].data = sellprice;
+      ptchart.data.datasets[2].data = mrp;
+      ptchart.data.datasets[3].data = quantity;
+      ptchart.data.datasets[4].data = profitpercent;
+      ptchart.data.datasets[4].data = totalprofit;
 
-      chart.options.title.text='Price Trend - '+localStorage.getItem("ptfilter-productSku")+' - '+localStorage.getItem("ptfilter-fromdate")+' -'+localStorage.getItem("ptfilter-todate");
-      chart.update();
+      ptchart.options.title.text='Price Trend - '+localStorage.getItem("ptfilter-productSku")+' - '+localStorage.getItem("ptfilter-fromdate")+' -'+localStorage.getItem("ptfilter-todate");
+      ptchart.update();
       Toast.fire({
         title: "Chart Loaded!",
         icon: "success"
@@ -298,24 +298,6 @@ function PTputListen(){
     $('#productSku').val(localStorage.getItem('ptfilter-productSku'));
   }
 }
-
-function toINR(num) {
-  input = num;
-  var n1, n2;
-  num = num + '' || '';
-  n1 = num.split('.');
-  n2 = n1[1] || null;
-  n1 = n1[0].replace(/(\d)(?=(\d\d)+\d$)/g, "$1,");
-  num = n2 ? n1 + '.' + n2 : n1;
-  return num;
-}
-
-$body=$("body");
-
-$(document).on({
-    ajaxStart: function() { $body.addClass("loading");    },
-     ajaxStop: function() { $body.removeClass("loading"); }
-});
 
 
 $( "#priceTrendCanvas" ).click(function() {
@@ -368,6 +350,25 @@ function changePriceTrendDate() {
     }
   });
 }
+
+
+function toINR(num) {
+  input = num;
+  var n1, n2;
+  num = num + '' || '';
+  n1 = num.split('.');
+  n2 = n1[1] || null;
+  n1 = n1[0].replace(/(\d)(?=(\d\d)+\d$)/g, "$1,");
+  num = n2 ? n1 + '.' + n2 : n1;
+  return num;
+}
+
+$body=$("body");
+
+$(document).on({
+    ajaxStart: function() { $body.addClass("loading");    },
+    ajaxStop: function() { $body.removeClass("loading"); }
+});
 </script>
 
 
