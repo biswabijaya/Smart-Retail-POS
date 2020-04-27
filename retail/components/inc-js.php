@@ -14,6 +14,7 @@
 <script src="assets/js/sb-admin-charts.min.js"></script>
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
 
 <?php if(isset($_GET['msg'])){
 
@@ -92,24 +93,78 @@ function showPopup()
 
 <script>
   // userdefinedfunctions
-  function ucFirst(str) {
-    return str.replace(/([a-z])/, function (match, value) {
-      return value.toUpperCase();
-    });
-  }
+    function toINR(num) {
+        input = num;
+        var n1, n2;
+        num = num + '' || '';
+        n1 = num.split('.');
+        n2 = n1[1] || null;
+        n1 = n1[0].replace(/(\d)(?=(\d\d)+\d$)/g, "$1,");
+        num = n2 ? n1 + '.' + n2 : n1;
+        return num;
+    }
 
-  function ucFirstAll(str) {
-    return str.split(' ').map(function (e) {
-      return e.replace(/([a-z])/, function (match, value) {
+
+    function ucFirst(str) {
+        return str.replace(/([a-z])/, function (match, value) {
           return value.toUpperCase();
-      })
-    }).join(' ');
-  }
-  
-  $body = $("body");
+        });
+    }
 
-$(document).on({
-    ajaxStart: function() { $body.addClass("loading");    },
-     ajaxStop: function() { $body.removeClass("loading"); }    
-});
+     function ucFirstAll(str) {
+        return str.split(' ').map(function (e) {
+          return e.replace(/([a-z])/, function (match, value) {
+              return value.toUpperCase();
+          })
+        }).join(' ');
+    }
+
+    $body = $("body");
+
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading");    },
+         ajaxStop: function() { $body.removeClass("loading"); }
+    });
   </script>
+
+<script>
+    //SwalSetup
+    const Pop = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn-sm btn bg-success-dark-gradient',
+        cancelButton: 'btn-sm btn bg-danger-dark-gradient',
+      },
+      showClass: {
+        popup: 'animated fadeInDown faster'
+      },
+      hideClass: {
+        popup: 'animated fadeOutUp faster'
+      },
+      buttonsStyling: true
+    });
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      showConfirmButton: false,
+      timer: 1000,
+      timerProgressBar: true,
+      onOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    });
+</script>
+
+<script>
+//ChatSetup
+chartColors = {
+  red: 'rgb(255, 99, 132)',
+  orange: 'rgb(255, 159, 64)',
+  yellow: 'rgb(255, 205, 86)',
+  green: 'rgb(75, 192, 192)',
+  blue: 'rgb(54, 162, 235)',
+  purple: 'rgb(153, 102, 255)',
+  grey: 'rgb(201, 203, 207)'
+};
+</script>
