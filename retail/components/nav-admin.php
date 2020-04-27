@@ -4,12 +4,12 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarResponsive">
-    <ul class="navbar-nav navbar-sidenav" id="nav-sidebar" style="padding-top:7px;">
+    <ul class="navbar-nav navbar-sidenav" id="nav-sidebar" style="margin-top: 65px;">
       <?php if ($_SESSION['usertype']=='admin'): ?>
-        <li class="nav-item <?php if($active=='overview.php') echo " active "; ?>" data-toggle="tooltip" data-placement="right" title="Overview">
-          <a class="nav-link" href="overview.php">
+        <li class="nav-item <?php if($active=='dashboard.php') echo " active "; ?>" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="dashboard.php">
             <i class="fa fa-fw fa-shopping-bag"></i>
-            <span class="nav-link-text">Optimize</span>
+            <span class="nav-link-text">Dashboard</span>
           </a>
         </li>
       <?php endif; ?>

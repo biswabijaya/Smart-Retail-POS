@@ -1,3 +1,12 @@
+<style>
+.badge{
+    padding: 0.5em 1.3em;
+    border-radius: 1.25rem;
+    cursor: pointer;
+}
+
+</style>
+
 <!-- Breadcrumbs-->
 <ol class="breadcrumb">
   <li class="breadcrumb-item">
@@ -73,11 +82,19 @@
   </div>
 </div>
 <!-- Area Chart Example-->
-<div class="card mb-3">
-  <div class="card-header">
-    <i class="fa fa-area-chart"></i> Area Chart Example</div>
-  <div class="card-body">
-    <canvas id="myAreaChart" width="100%" height="30"></canvas>
+<div class="row">
+  <div class="col-md-6 col-12 mb-3">
+    <div class="card mb-3">
+      <div class="card-body p-0">
+        <canvas id="busunessTrendCanvas" height="200"></canvas>
+      </div>
+    </div>
   </div>
-  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+  <div class="col-md-6 col-12 mb-3">
+    <div class="card mb-3">
+      <div class="card-body p-0">
+        <canvas id="priceTrendCanvas" height="200"></canvas>
+      </div>
+    </div>
+  </div>
 </div>
