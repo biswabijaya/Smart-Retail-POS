@@ -1,7 +1,7 @@
 <script>
 
 //businessTrendSetup
-btapiurl='http://smartretailpos.pe.hu/api/purchasesVsSales.php';
+btapiurl='http://smartretailpos.pe.hu/api/businessTrend.php';
 setTimeout(BTputListen, 1000);
 setTimeout(getBusunessTrendData, 1500);
 
