@@ -16,8 +16,8 @@ if (isset($_POST['sales']) && $_POST['sales']=="add") {
       header("Location: $page.php?msg=SaleAddSuccess");
   } else {
       $insertrecord = mysqli_query($mysqli, "INSERT INTO actionrecords (nameorid,module,action,status,usertype,doneby) VALUES('$storecode','Sales','Add','NotSuccess','$usertype','$doneby')");
-      header("Location: $page.php?msg=SaleAAddNotSuccess");
+      header("Location: $page.php?msg=SaleAddNotSuccess");
   }
-} 
+}
 
 ?>
