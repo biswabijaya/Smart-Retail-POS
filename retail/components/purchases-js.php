@@ -28,8 +28,8 @@
         initPurchasesPage();
     }
 
-    function initNewSale(){
-        initNewSaleFilter();
+    function initNewPurchase(){
+        initNewPurchaseFilter();
     }
 
     function filterPurchases() {
@@ -70,7 +70,7 @@
         });
     }
 
-    function initNewSaleFilter(){
+    function initNewPurchaseFilter(){
         furl='components/filtersort-newpurchase.php';
         $.ajax({
           url:furl,
